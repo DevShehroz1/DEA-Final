@@ -403,6 +403,8 @@
           "settings": {
             "heading": "PRESS-ONS THAT ACTUALLY LOOK LIKE THE REAL THING",
             "description": "",
+            "image": "shopify://shop_images/Pastell-lila-Gel-Strips-Blumen-in-Jeanshosentasche_600x_44ab1475-571f-4a5d-ba0f-053bc61420a4.webp",
+            "image_2": "shopify://shop_images/Rote-Dipping-Powder-N_gel_600x_1.webp",
             "image_position": "right",
             "button_label": "",
             "button_link": ""
@@ -423,6 +425,7 @@
       "type": "animated-banner",
       "name": "Animated Banner",
       "settings": {
+        "image": "shopify://shop_images/image-banner-1_8c625899-95b9-4a4c-8592-86d042a27db8.webp",
         "overlay_opacity": 10,
         "bg_color": "#e8d8c3",
         "text": "Salon nails in minutes. No appointment ever.",
