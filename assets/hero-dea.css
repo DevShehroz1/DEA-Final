@@ -1,5 +1,6 @@
 /* ============================================
    HERO DEA - Custom Split Hero Section
+   Uses theme global font/button variables
    ============================================ */
 
 .hero-dea {
@@ -30,28 +31,31 @@
 }
 
 .hero-dea__eyebrow {
-  font-size: 12px;
-  letter-spacing: 4px;
+  font-family: var(--body-font);
+  font-size: var(--body-font-size, 15px);
+  letter-spacing: 3px;
   text-transform: uppercase;
   color: var(--hero-accent, #8B6459);
-  font-weight: 600;
-  margin-bottom: 24px;
+  font-weight: var(--heading-weight, 400);
+  margin-bottom: 20px;
   opacity: 0;
   animation: heroFadeUp 0.6s ease forwards;
   animation-delay: 0.1s;
 }
 
 .hero-dea__heading {
-  margin: 0 0 28px 0;
-  line-height: 0.92;
-  letter-spacing: -0.02em;
+  font-family: var(--heading-font);
+  margin: 0 0 24px 0;
+  line-height: 1;
+  letter-spacing: var(--heading-letter-spacing, -0.034em);
 }
 
 .hero-dea__heading-line1 {
   display: block;
-  font-size: clamp(52px, 6.5vw, 100px);
-  font-weight: 800;
-  text-transform: uppercase;
+  font-family: var(--heading-font);
+  font-size: clamp(3.6rem, calc(3.6rem + (40 - 36) * var(--responsive-rate, 0.5)), 4rem);
+  font-weight: var(--heading-weight, 400);
+  text-transform: var(--heading-text-transform, capitalize);
   color: var(--hero-text, #0a0a0a);
   opacity: 0;
   animation: heroFadeUp 0.6s ease forwards;
@@ -60,9 +64,10 @@
 
 .hero-dea__heading-line2 {
   display: block;
-  font-size: clamp(52px, 6.5vw, 100px);
-  font-weight: 800;
-  text-transform: uppercase;
+  font-family: var(--heading-font);
+  font-size: clamp(3.6rem, calc(3.6rem + (40 - 36) * var(--responsive-rate, 0.5)), 4rem);
+  font-weight: var(--heading-weight, 400);
+  text-transform: var(--heading-text-transform, capitalize);
   color: var(--hero-accent, #8B6459);
   opacity: 0;
   animation: heroFadeUp 0.6s ease forwards;
@@ -70,13 +75,14 @@
 }
 
 .hero-dea__description {
-  font-size: clamp(16px, 1.2vw, 19px);
-  line-height: 1.65;
+  font-family: var(--body-font);
+  font-size: var(--body-font-size, 15px);
+  line-height: var(--body-line-height, 1.714);
   color: var(--hero-text, #0a0a0a);
   opacity: 0.8;
   max-width: 460px;
-  margin-bottom: 40px;
-  font-weight: 400;
+  margin-bottom: 32px;
+  font-weight: var(--body-weight, 400);
   opacity: 0;
   animation: heroFadeUp 0.6s ease forwards;
   animation-delay: 0.5s;
@@ -85,18 +91,21 @@
 .hero-dea__cta {
   display: inline-flex;
   align-items: center;
-  gap: 12px;
-  background: var(--hero-btn-bg, #0a0a0a);
-  color: var(--hero-btn-text, #F5F0EB);
-  padding: 18px 40px;
-  font-size: 13px;
-  font-weight: 600;
-  letter-spacing: 2.5px;
-  text-transform: uppercase;
+  gap: 10px;
+  background: var(--hero-btn-bg, var(--btn-primary-bg-color, #0a0a0a));
+  color: var(--hero-btn-text, var(--btn-primary-color, #F5F0EB));
+  padding: var(--btn-padding-y, 1.5rem) var(--btn-padding-x, 5.5rem);
+  font-family: var(--btn-font, var(--heading-font));
+  font-size: var(--btn-font-size, 15px);
+  font-weight: var(--heading-weight, 400);
+  letter-spacing: var(--btn-letter-spacing, -0.034em);
+  text-transform: var(--btn-text-transform, capitalize);
   text-decoration: none;
-  border: none;
+  border: 1px solid var(--hero-btn-bg, var(--btn-primary-bg-color, #0a0a0a));
+  border-radius: var(--btn-radius, 30px);
   cursor: pointer;
   transition: all 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  line-height: normal;
   width: fit-content;
   opacity: 0;
   animation: heroFadeUp 0.6s ease forwards;
@@ -104,18 +113,20 @@
 }
 
 .hero-dea__cta:hover {
-  background: var(--hero-accent, #8B6459);
+  background: var(--btn-primary-hover-bg-color, var(--hero-accent, #8B6459));
+  color: var(--btn-primary-hover-color, #fff);
+  border-color: var(--btn-primary-hover-bg-color, var(--hero-accent, #8B6459));
   transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
 }
 
 .hero-dea__cta-arrow {
   transition: transform 0.3s ease;
-  font-size: 16px;
+  font-size: 1em;
 }
 
 .hero-dea__cta:hover .hero-dea__cta-arrow {
-  transform: translateX(5px);
+  transform: translateX(4px);
 }
 
 /* ---- RIGHT: Image with Arch ---- */
@@ -201,15 +212,6 @@
     order: 2;
   }
 
-  .hero-dea__eyebrow {
-    letter-spacing: 3px;
-  }
-
-  .hero-dea__heading-line1,
-  .hero-dea__heading-line2 {
-    font-size: clamp(42px, 10vw, 64px);
-  }
-
   .hero-dea__description {
     max-width: 100%;
   }
@@ -230,18 +232,7 @@
     padding: 40px 20px 40px 20px;
   }
 
-  .hero-dea__heading-line1,
-  .hero-dea__heading-line2 {
-    font-size: 38px;
-  }
-
-  .hero-dea__description {
-    font-size: 15px;
-  }
-
   .hero-dea__cta {
-    padding: 16px 32px;
-    font-size: 12px;
     width: 100%;
     justify-content: center;
   }
