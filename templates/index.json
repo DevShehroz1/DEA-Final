@@ -575,9 +575,28 @@
         "padding_top": 40,
         "padding_bottom": 60
       }
+    },
+    "hero_dea_main": {
+      "type": "hero-dea",
+      "settings": {
+        "eyebrow": "Press-On Perfection",
+        "heading_line1": "Salon Nails.",
+        "heading_line2": "Zero Appointment.",
+        "description": "Premium press-on nails that last up to 2 weeks. Apply in minutes, look like you spent hours.",
+        "button_label": "Shop the Collection",
+        "button_link": "shopify:\/\/collections\/all",
+        "bg_color": "#F5F0EB",
+        "accent_color": "#8B6459",
+        "text_color": "#0a0a0a",
+        "button_bg": "#0a0a0a",
+        "button_text_color": "#F5F0EB",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
     }
   },
   "order": [
+    "hero_dea_main",
     "slideshow_8KKtNU",
     "collection_tab_WYU6Ti",
     "how_it_works_ehWcBh",
