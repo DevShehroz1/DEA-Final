@@ -254,6 +254,7 @@
       "type": "scroll-text-reveal",
       "name": "Scroll Text Reveal",
       "settings": {
+        "image": "shopify://shop_images/NewYear_Homepage_Header_Alle_Produkte-1.webp",
         "image_rotation": -6,
         "text": "YOUR NEXT MANICURE SHOULDN'T COST $60.\nOR TAKE 2 HOURS. OR DAMAGE YOUR NAILS. DEA PRESS-ONS GIVE YOU SALON RESULTS IN MINUTES, NOT HOURS.",
         "underline_word": "",
