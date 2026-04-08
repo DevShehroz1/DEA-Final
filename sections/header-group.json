@@ -1,1 +1,177 @@
-{"name":"t:sections.header.name","type":"header","sections":{"announcement_bar_Nhj4UU":{"type":"announcement-bar","blocks":{"announcement_msg2":{"type":"announcement","settings":{"text":"Enjoy free shipping on orders above ₹799.","countdown_deadline":""}},"announcement_fjngXW":{"type":"announcement","settings":{"text":"Enjoy free shipping on orders above ₹799.","countdown_deadline":""}}},"block_order":["announcement_msg2","announcement_fjngXW"],"name":"t:sections.announcement-bar.name","settings":{"section_width":"full_width","color_scheme":"scheme-lavender-announcement","announcement_actions":"marquee","show_close":false,"homepage_only":false,"show_mobile":true,"show_separator_line":false,"uppercase":false,"font_size":13,"font_weight":"body_weight","speed":15,"space_between":50,"icon_between_item":"star","change_every":3,"padding_top":10,"padding_bottom":10}},"header":{"type":"header","blocks":{"menu_promotion_xJdpmk":{"type":"menu_promotion","settings":{"text":"Sale","open-link-newtab":true,"item_label":"hot","promotion_menu_column":4,"mega_custom_width":1030,"center_submenu":true,"full_width":true,"promotion_position":"right","promotion_image_width":27,"promotion_link_1":"","promotion_link_newtab_1":true,"promotion_link_2":"","promotion_link_newtab_2":true}},"menu_collection_EkdGyG":{"type":"menu_collection","settings":{"text":"Shop","open-link-newtab":true,"item_label":"unset","collection_menu_column":2,"mega_custom_width":1030,"center_submenu":false,"full_width":false,"collection_width":55,"collection_1":"sweaters","collection_2":"handbags","collection_3":""}},"menu_promotion_rWzQL6":{"type":"menu_promotion","settings":{"text":"Products","open-link-newtab":true,"item_label":"unset","promotion_menu_column":4,"mega_custom_width":1030,"center_submenu":true,"full_width":true,"promotion_position":"right","promotion_image_width":33,"promotion_link_1":"shopify:\/\/collections\/activewear","promotion_link_newtab_1":true,"promotion_link_2":"","promotion_link_newtab_2":true}}},"block_order":["menu_promotion_xJdpmk","menu_collection_EkdGyG","menu_promotion_rWzQL6"],"settings":{"section_width":"stretch_width","color_scheme":"","logo_position":"left","separator_line":"inner_page","enable_login_popup":true,"sticky_header_type":"always","sticky_header_mobile":true,"transparent_header":false,"transparent_mobile":false,"transparent_text_icon_color":"#ffffff","mega_menu":"main-menu","dropdowns_animation":"down-to-up","uppercase_first":true,"hot":"Hot","label_color_hot":"#ffffff","label_background_hot":"#d0473e","new":"New","label_color_new":"#ffffff","label_background_new":"#516cf4","sale":"Sale","label_color_sale":"#ffffff","label_background_sale":"#d0473e","redirect_to_link":false,"menu_tab":"custom-collections","collection_list":["hot-deals","best-seller","sweaters","t-shirts","dress","blazers","activewear"],"menu_mobile_color":"#ffffff","menu_mobile_background":"#d0473e","show_search":false,"show_account_icon":true,"show_wishlist_icon":false,"show_shopping_cart":true,"show_currency":false,"show_language":false,"show_recently_viewed":false,"padding_top":15,"padding_bottom":15}}},"order":["announcement_bar_Nhj4UU","header"]}
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "name": "t:sections.header.name",
+  "type": "header",
+  "sections": {
+    "announcement_bar_Nhj4UU": {
+      "type": "announcement-bar",
+      "blocks": {
+        "announcement_msg2": {
+          "type": "announcement",
+          "settings": {
+            "text": "First order? Use code DEA10 for 10% off",
+            "countdown_deadline": ""
+          }
+        },
+        "announcement_fjngXW": {
+          "type": "announcement",
+          "settings": {
+            "text": "Salon-quality press-ons. No appointment needed.",
+            "countdown_deadline": ""
+          }
+        },
+        "announcement_U37mpP": {
+          "type": "announcement",
+          "settings": {
+            "text": "Free shipping on orders over 399 AED.",
+            "countdown_deadline": ""
+          }
+        }
+      },
+      "block_order": [
+        "announcement_msg2",
+        "announcement_fjngXW",
+        "announcement_U37mpP"
+      ],
+      "name": "t:sections.announcement-bar.name",
+      "settings": {
+        "section_width": "full_width",
+        "color_scheme": "scheme-lavender-announcement",
+        "announcement_actions": "marquee",
+        "show_close": false,
+        "homepage_only": false,
+        "show_mobile": true,
+        "show_separator_line": false,
+        "uppercase": false,
+        "font_size": 13,
+        "font_weight": "body_weight",
+        "speed": 15,
+        "space_between": 50,
+        "icon_between_item": "star",
+        "change_every": 3,
+        "padding_top": 10,
+        "padding_bottom": 10
+      }
+    },
+    "header": {
+      "type": "header",
+      "blocks": {
+        "menu_promotion_xJdpmk": {
+          "type": "menu_promotion",
+          "settings": {
+            "text": "Sale",
+            "open-link-newtab": true,
+            "item_label": "hot",
+            "promotion_menu_column": 4,
+            "mega_custom_width": 1030,
+            "center_submenu": true,
+            "full_width": true,
+            "promotion_position": "right",
+            "promotion_image_width": 27,
+            "promotion_link_1": "",
+            "promotion_link_newtab_1": true,
+            "promotion_link_2": "",
+            "promotion_link_newtab_2": true
+          }
+        },
+        "menu_collection_EkdGyG": {
+          "type": "menu_collection",
+          "settings": {
+            "text": "Shop",
+            "open-link-newtab": true,
+            "item_label": "unset",
+            "collection_menu_column": 2,
+            "mega_custom_width": 1030,
+            "center_submenu": false,
+            "full_width": false,
+            "collection_width": 55,
+            "collection_1": "sweaters",
+            "collection_2": "handbags",
+            "collection_3": ""
+          }
+        },
+        "menu_promotion_rWzQL6": {
+          "type": "menu_promotion",
+          "settings": {
+            "text": "Products",
+            "open-link-newtab": true,
+            "item_label": "unset",
+            "promotion_menu_column": 4,
+            "mega_custom_width": 1030,
+            "center_submenu": true,
+            "full_width": true,
+            "promotion_position": "right",
+            "promotion_image_width": 33,
+            "promotion_link_1": "shopify://collections/activewear",
+            "promotion_link_newtab_1": true,
+            "promotion_link_2": "",
+            "promotion_link_newtab_2": true
+          }
+        }
+      },
+      "block_order": [
+        "menu_promotion_xJdpmk",
+        "menu_collection_EkdGyG",
+        "menu_promotion_rWzQL6"
+      ],
+      "settings": {
+        "section_width": "stretch_width",
+        "color_scheme": "",
+        "logo_position": "left",
+        "separator_line": "inner_page",
+        "enable_login_popup": true,
+        "sticky_header_type": "always",
+        "sticky_header_mobile": true,
+        "transparent_header": false,
+        "transparent_mobile": false,
+        "transparent_text_icon_color": "#ffffff",
+        "mega_menu": "main-menu",
+        "dropdowns_animation": "down-to-up",
+        "uppercase_first": true,
+        "hot": "Hot",
+        "label_color_hot": "#ffffff",
+        "label_background_hot": "#d0473e",
+        "new": "New",
+        "label_color_new": "#ffffff",
+        "label_background_new": "#516cf4",
+        "sale": "Sale",
+        "label_color_sale": "#ffffff",
+        "label_background_sale": "#d0473e",
+        "redirect_to_link": false,
+        "menu_tab": "custom-collections",
+        "collection_list": [
+          "hot-deals",
+          "best-seller",
+          "sweaters",
+          "t-shirts",
+          "dress",
+          "blazers",
+          "activewear"
+        ],
+        "menu_mobile_color": "#ffffff",
+        "menu_mobile_background": "#d0473e",
+        "show_search": false,
+        "show_account_icon": true,
+        "show_wishlist_icon": false,
+        "show_shopping_cart": true,
+        "show_currency": false,
+        "show_language": false,
+        "show_recently_viewed": false,
+        "padding_top": 15,
+        "padding_bottom": 15
+      }
+    }
+  },
+  "order": [
+    "announcement_bar_Nhj4UU",
+    "header"
+  ]
+}
