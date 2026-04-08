@@ -1,0 +1,185 @@
+{%- capture style -%}
+  --section-pt: {{ section.settings.padding_top }}; --section-pb: {{ section.settings.padding_bottom }};
+{%- endcapture -%}
+
+{%- liquid
+  assign text = section.settings.text
+  assign words = text | split: ' '
+  assign underline_word = section.settings.underline_word
+  assign bg_color = section.settings.bg_color
+  assign button_label = section.settings.button_label
+  assign button_link = section.settings.button_link
+-%}
+
+<section
+  class="section scroll-text-reveal"
+  style="{{ style | strip | strip_newlines }}"
+>
+  <div class="str__outer" style="min-height: 2400px; position: relative;">
+    <div class="str__sticky" style="position: sticky; top: 0; min-height: 100vh; display: flex; align-items: center; justify-content: center; background-color: {{ bg_color }}; overflow: hidden;">
+      <div class="str__inner" style="text-align: center; max-width: 1200px; padding: 40px 30px; width: 100%;">
+        {%- if section.settings.image != blank -%}
+          <div class="str__image" style="margin-bottom: 40px; display: flex; justify-content: center; align-items: center;">
+            <img
+              src="{{ section.settings.image | image_url: width: 500 }}"
+              alt="{{ section.settings.heading | default: 'image' }}"
+              width="400"
+              height="250"
+              loading="lazy"
+              style="max-width: 400px; width: 100%; height: auto; margin: 0 auto; display: block; transform: rotate({{ section.settings.image_rotation | default: -6 }}deg); transition: transform 0.3s ease;"
+            >
+          </div>
+        {%- endif -%}
+        <h2 class="str__text" style="font-family: 'Clash Display', var(--heading-font), sans-serif; font-weight: 500; font-style: normal; text-transform: uppercase; font-size: 40px; line-height: 50px; letter-spacing: 0; word-spacing: normal; margin: 0 0 40px 0; text-align: center;">
+          {%- for word in words -%}{%- if word == underline_word -%}<span class="str__word str__underline-wrap" data-index="{{ forloop.index0 }}" style="color: #ccc; transition: color 0.3s ease; position: relative; display: inline-block;">{{ word }}<svg class="str__underline-svg" style="position:absolute;bottom:-8px;left:-5%;width:110%;height:30px;pointer-events:none;" viewBox="0 0 200 20" preserveAspectRatio="none"><path d="M5 12 Q50 3, 100 10 Q150 18, 195 8" stroke="#b8a0d4" stroke-width="8" fill="none" stroke-linecap="round" opacity="0" style="transition: opacity 0.5s ease;"/></svg></span>{%- else -%}<span class="str__word" data-index="{{ forloop.index0 }}" style="color: #ccc; transition: color 0.3s ease;">{{ word }}</span>{%- endif -%}{%- unless forloop.last -%}<span class="str__space" style="display: inline-block; width: 0.25em;">&nbsp;</span>{%- endunless -%}{%- endfor -%}
+        </h2>
+        {%- if button_label != blank -%}
+          <div class="str__cta" style="opacity: 0; transform: translateY(20px); transition: opacity 0.5s ease, transform 0.5s ease;">
+            <a href="{{ button_link | default: '/collections/all' }}" class="str__cta-btn-glass" style="position: relative; display: inline-flex; align-items: center; justify-content: center; background: rgba(0, 0, 0, 0.04); backdrop-filter: blur(28px) saturate(180%); -webkit-backdrop-filter: blur(28px) saturate(180%); border: 1px solid rgba(0, 0, 0, 0.12); color: #111; border-radius: 999px; padding: 16px 40px; font-family: 'Clash Display', var(--heading-font), sans-serif; font-size: 12px; font-weight: 500; line-height: 16px; letter-spacing: 0.96px; text-transform: uppercase; text-align: center; box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.9), inset 0 -1px 1px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.04), 0 8px 24px rgba(0, 0, 0, 0.08); transition: all 0.3s ease; overflow: hidden; text-decoration: none;">
+              <span style="position: absolute; inset: 0; border-radius: inherit; background: linear-gradient(135deg, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0) 40%, rgba(255, 255, 255, 0) 60%, rgba(255, 255, 255, 0.2) 100%); pointer-events: none;"></span>
+              <span style="position: relative; z-index: 1;">{{ button_label }}</span>
+            </a>
+          </div>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  (function() {
+    const section = document.querySelector('.scroll-text-reveal');
+    if (!section) return;
+    const outer = section.querySelector('.str__outer');
+    const words = section.querySelectorAll('.str__word');
+    const underlineSvg = section.querySelector('.str__underline-svg path');
+    const cta = section.querySelector('.str__cta');
+    const totalWords = words.length;
+
+    function onScroll() {
+      const rect = outer.getBoundingClientRect();
+      const outerHeight = outer.offsetHeight;
+      const viewHeight = window.innerHeight;
+      const scrolled = -rect.top;
+      const scrollRange = outerHeight - viewHeight;
+      if (scrollRange <= 0) return;
+      const progress = Math.max(0, Math.min(1, scrolled / scrollRange));
+      const wordProgress = progress * 1.3;
+      const wordsToReveal = Math.floor(wordProgress * totalWords);
+
+      words.forEach(function(word, i) {
+        if (i < wordsToReveal) {
+          word.style.color = '#000';
+        } else {
+          word.style.color = '#ccc';
+        }
+      });
+
+      if (underlineSvg) {
+        const underlineParent = underlineSvg.closest('.str__word');
+        if (underlineParent) {
+          const idx = parseInt(underlineParent.dataset.index);
+          if (idx < wordsToReveal) {
+            underlineSvg.style.opacity = '1';
+          } else {
+            underlineSvg.style.opacity = '0';
+          }
+        }
+      }
+
+      if (cta) {
+        if (progress > 0.75) {
+          cta.style.opacity = '1';
+          cta.style.transform = 'translateY(0)';
+        } else {
+          cta.style.opacity = '0';
+          cta.style.transform = 'translateY(20px)';
+        }
+      }
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Scroll Text Reveal",
+  "tag": "section",
+  "disabled_on": {
+    "groups": ["header", "footer", "custom.overlay"]
+  },
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Top image"
+    },
+    {
+      "type": "range",
+      "id": "image_rotation",
+      "label": "Image rotation",
+      "min": -45,
+      "max": 45,
+      "step": 1,
+      "unit": "deg",
+      "default": -6
+    },
+    {
+      "type": "textarea",
+      "id": "text",
+      "label": "Text",
+      "default": "The scent that actually works not just for minutes, but all day. It blends with your skin, evolves with your body, and lasts where others fade. Built for heat, humidity, and real life. Subtle, effortless, and always there."
+    },
+    {
+      "type": "text",
+      "id": "underline_word",
+      "label": "Word to underline (purple)",
+      "default": "seamlessly,"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background color",
+      "default": "#eaeaee"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "Shop Our Products"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "default": 0,
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "default": 0,
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Scroll Text Reveal"
+    }
+  ]
+}
+{% endschema %}

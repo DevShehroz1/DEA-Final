@@ -1,0 +1,343 @@
+{%- liquid
+  assign sec_st = section.settings
+  assign image = sec_st.image
+  assign image_mobile = sec_st.image_mobile | default: image
+-%}
+<style>
+  #animated-banner-{{ section.id }} .ab__outer {
+    position: relative;
+    width: 100%;
+    height: {{ sec_st.scroll_length | default: 300 }}vh;
+  }
+  #animated-banner-{{ section.id }} .ab__sticky {
+    position: sticky;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    background-color: {{ sec_st.bg_color }};
+  }
+  #animated-banner-{{ section.id }} .ab__media {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+  }
+  #animated-banner-{{ section.id }} .ab__media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  #animated-banner-{{ section.id }} .ab__media:after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-color: #000;
+    opacity: {{ sec_st.overlay_opacity | divided_by: 100.0 }};
+    pointer-events: none;
+  }
+  #animated-banner-{{ section.id }} .ab__text-wrap {
+    position: absolute;
+    bottom: {{ sec_st.text_bottom_offset | default: 60 }}px;
+    left: 0;
+    width: 100%;
+    z-index: 1;
+    overflow: hidden;
+    pointer-events: none;
+  }
+  #animated-banner-{{ section.id }} .ab__text {
+    display: inline-block;
+    white-space: nowrap;
+    font-family: 'Aeonik', var(--body-font), sans-serif;
+    font-weight: {{ sec_st.text_weight | default: 400 }};
+    font-style: normal;
+    font-size: {{ sec_st.text_size | default: 160 }}px;
+    line-height: 160px;
+    letter-spacing: -0.02em;
+    color: {{ sec_st.text_color }};
+    will-change: transform;
+    padding: 0;
+    margin: 0;
+  }
+  #animated-banner-{{ section.id }} .ab__img-desktop {
+    display: block;
+  }
+  #animated-banner-{{ section.id }} .ab__img-mobile {
+    display: none;
+  }
+  @media (max-width: 767.98px) {
+    #animated-banner-{{ section.id }} .ab__img-desktop {
+      display: none;
+    }
+    #animated-banner-{{ section.id }} .ab__img-mobile {
+      display: block;
+    }
+    #animated-banner-{{ section.id }} .ab__text {
+      font-size: {{ sec_st.text_size_mobile | default: 72 }}px;
+      line-height: {{ sec_st.text_size_mobile | default: 72 }}px;
+    }
+    #animated-banner-{{ section.id }} .ab__text-wrap {
+      bottom: {{ sec_st.text_bottom_offset_mobile | default: 32 }}px;
+    }
+    #animated-banner-{{ section.id }} .ab__outer {
+      height: {{ sec_st.scroll_length_mobile | default: 220 }}vh;
+    }
+  }
+</style>
+<div
+  id="animated-banner-{{ section.id }}"
+  class="animated-banner color-{{ sec_st.color_scheme }}"
+>
+  <div class="ab__outer" data-animated-banner>
+    <div class="ab__sticky">
+      <div class="ab__media">
+        {%- if image != blank -%}
+          <img
+            class="ab__img-desktop"
+            src="{{ image | image_url: width: 2400 }}"
+            srcset="
+              {{ image | image_url: width: 1100 }} 1100w,
+              {{ image | image_url: width: 1500 }} 1500w,
+              {{ image | image_url: width: 1920 }} 1920w,
+              {{ image | image_url: width: 2400 }} 2400w,
+              {{ image | image_url: width: 3000 }} 3000w
+            "
+            sizes="100vw"
+            alt="{{ image.alt | escape }}"
+            width="{{ image.width }}"
+            height="{{ image.height }}"
+            loading="lazy"
+          >
+        {%- endif -%}
+        {%- if image_mobile != blank -%}
+          <img
+            class="ab__img-mobile"
+            src="{{ image_mobile | image_url: width: 1200 }}"
+            srcset="
+              {{ image_mobile | image_url: width: 480 }} 480w,
+              {{ image_mobile | image_url: width: 750 }} 750w,
+              {{ image_mobile | image_url: width: 1100 }} 1100w
+            "
+            sizes="100vw"
+            alt="{{ image_mobile.alt | escape }}"
+            width="{{ image_mobile.width }}"
+            height="{{ image_mobile.height }}"
+            loading="lazy"
+          >
+        {%- endif -%}
+      </div>
+      <div class="ab__text-wrap">
+        <span class="ab__text" data-ab-text>{{ sec_st.text }}</span>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  (function() {
+    var root = document.getElementById('animated-banner-{{ section.id }}');
+    if (!root) return;
+    var outer = root.querySelector('[data-animated-banner]');
+    var textEl = root.querySelector('[data-ab-text]');
+    if (!outer || !textEl) return;
+
+    var viewportW = window.innerWidth;
+    var textW = textEl.offsetWidth;
+    var totalDistance = viewportW + textW;
+
+    function recalc() {
+      viewportW = window.innerWidth;
+      textW = textEl.offsetWidth;
+      totalDistance = viewportW + textW;
+    }
+
+    function onScroll() {
+      var rect = outer.getBoundingClientRect();
+      var outerH = outer.offsetHeight;
+      var viewH = window.innerHeight;
+      var scrolled = -rect.top;
+      var scrollRange = outerH - viewH;
+      if (scrollRange <= 0) {
+        textEl.style.transform = 'translateX(' + viewportW + 'px)';
+        return;
+      }
+      var progress = Math.max(0, Math.min(1, scrolled / scrollRange));
+      // start at viewportW (fully right, offscreen), end at -textW (fully left, offscreen)
+      var x = viewportW - (progress * totalDistance);
+      textEl.style.transform = 'translateX(' + x + 'px)';
+    }
+
+    window.addEventListener('resize', function() {
+      recalc();
+      onScroll();
+    }, { passive: true });
+    window.addEventListener('scroll', onScroll, { passive: true });
+    // initial run after fonts load
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(function() {
+        recalc();
+        onScroll();
+      });
+    } else {
+      recalc();
+      onScroll();
+    }
+  })();
+</script>
+{% schema %}
+{
+  "name": "Animated Banner",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Images"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Desktop background image"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_mobile",
+      "label": "Mobile background image"
+    },
+    {
+      "type": "range",
+      "id": "overlay_opacity",
+      "label": "Image overlay opacity",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "default": 10
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background color (behind image)",
+      "default": "#e8d8c3"
+    },
+    {
+      "type": "header",
+      "content": "Text"
+    },
+    {
+      "type": "text",
+      "id": "text",
+      "label": "Text",
+      "default": "One case. Your first scent. The rest follows naturally."
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "select",
+      "id": "text_weight",
+      "label": "Text weight",
+      "default": "400",
+      "options": [
+        { "value": "300", "label": "Light" },
+        { "value": "400", "label": "Regular" },
+        { "value": "500", "label": "Medium" },
+        { "value": "600", "label": "Semibold" },
+        { "value": "700", "label": "Bold" }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "text_size",
+      "label": "Text size (desktop)",
+      "min": 80,
+      "max": 320,
+      "step": 4,
+      "unit": "px",
+      "default": 160
+    },
+    {
+      "type": "range",
+      "id": "text_size_mobile",
+      "label": "Text size (mobile)",
+      "min": 40,
+      "max": 140,
+      "step": 2,
+      "unit": "px",
+      "default": 72
+    },
+    {
+      "type": "range",
+      "id": "text_bottom_offset",
+      "label": "Text bottom offset (desktop)",
+      "min": 0,
+      "max": 300,
+      "step": 4,
+      "unit": "px",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "text_bottom_offset_mobile",
+      "label": "Text bottom offset (mobile)",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "default": 32
+    },
+    {
+      "type": "header",
+      "content": "Scroll behavior"
+    },
+    {
+      "type": "range",
+      "id": "scroll_length",
+      "label": "Scroll length (desktop)",
+      "min": 150,
+      "max": 500,
+      "step": 10,
+      "unit": "vh",
+      "default": 300,
+      "info": "How much scrolling is needed to complete the animation. Higher = slower."
+    },
+    {
+      "type": "range",
+      "id": "scroll_length_mobile",
+      "label": "Scroll length (mobile)",
+      "min": 150,
+      "max": 400,
+      "step": 10,
+      "unit": "vh",
+      "default": 220
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "select",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1",
+      "options": [
+        { "value": "scheme-1", "label": "Scheme 1" },
+        { "value": "scheme-2", "label": "Scheme 2" },
+        { "value": "scheme-3", "label": "Scheme 3" },
+        { "value": "scheme-4", "label": "Scheme 4" },
+        { "value": "scheme-5", "label": "Scheme 5" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Animated Banner"
+    }
+  ]
+}
+{% endschema %}

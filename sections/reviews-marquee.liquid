@@ -1,0 +1,280 @@
+{%- capture style -%}
+  --section-pt: {{ section.settings.padding_top }}; --section-pb: {{ section.settings.padding_bottom }};
+{%- endcapture -%}
+
+<section
+  class="section{% if section.settings.padding_top < 30 %} pt-min{% endif %}{% if section.settings.padding_bottom < 30 %} pb-min{% endif %}"
+  style="{{ style | strip | strip_newlines }}; background-color: {{ section.settings.bg_color }};"
+>
+  <div class="fluid_container">
+    <h2 class="rm__heading">{{ section.settings.heading }}</h2>
+  </div>
+  <div class="rm__track-wrapper">
+    <div class="rm__track">
+      {%- for i in (1..3) -%}
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'review' -%}
+            <div class="rm__card rm__card--review" {{ block.shopify_attributes }} style="background: #ffffff !important; background-color: #ffffff !important;">
+              <div class="rm__stars">
+                {%- for s in (1..5) -%}
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="{{ section.settings.star_color }}"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                {%- endfor -%}
+              </div>
+              <h3 class="rm__title">{{ block.settings.title }}</h3>
+              <p class="rm__text">{{ block.settings.text }}</p>
+              <div class="rm__author">
+                <span class="rm__name">{{ block.settings.author }}</span>
+                <span class="rm__sub">{{ block.settings.subtitle }}</span>
+              </div>
+            </div>
+          {%- elsif block.type == 'image' -%}
+            <div class="rm__card rm__card--image" {{ block.shopify_attributes }}>
+              {%- if block.settings.image != blank -%}
+                <img src="{{ block.settings.image | image_url: width: 500 }}" alt="Review image" loading="lazy" style="width:100%;height:100%;object-fit:cover;border-radius:12px;">
+              {%- else -%}
+                <div style="width:100%;height:100%;background:#ddd;border-radius:12px;"></div>
+              {%- endif -%}
+            </div>
+          {%- endif -%}
+        {%- endfor -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+<style>
+  .rm__heading {
+    font-family: var(--heading-font);
+    font-size: clamp(36px, 5vw, 56px);
+    font-weight: 400;
+    text-transform: uppercase;
+    margin: 0 0 30px 0;
+    line-height: 1.1;
+    color: #000;
+  }
+  .rm__track-wrapper {
+    overflow: hidden;
+    width: 100%;
+  }
+  .rm__track {
+    display: flex;
+    gap: 20px;
+    animation: rm-scroll var(--rm-speed, 40s) linear infinite;
+    width: max-content;
+  }
+  .rm__track:hover {
+    animation-play-state: paused;
+  }
+  .rm__card {
+    flex-shrink: 0;
+    width: 280px;
+  }
+  .rm__card--review,
+  .rm__track .rm__card--review,
+  div.rm__card.rm__card--review {
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    padding: 25px;
+    background: #ffffff !important;
+    background-color: #ffffff !important;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 320px;
+  }
+  .rm__card--image {
+    border-radius: 12px;
+    overflow: hidden;
+    height: 320px;
+  }
+  .rm__stars {
+    display: flex;
+    gap: 3px;
+    margin-bottom: 15px;
+  }
+  .rm__title {
+    font-family: var(--body-font);
+    font-size: 20px;
+    font-weight: 700;
+    margin: 0 0 10px 0;
+    line-height: 1.3;
+    color: #000;
+  }
+  .rm__text {
+    font-family: var(--body-font);
+    font-size: 15px;
+    font-weight: 400;
+    color: #333;
+    line-height: 1.5;
+    margin: 0 0 20px 0;
+    flex-grow: 1;
+  }
+  .rm__author {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .rm__name {
+    font-family: var(--body-font);
+    font-size: 14px;
+    font-weight: 600;
+    color: #000;
+  }
+  .rm__sub {
+    font-family: var(--body-font);
+    font-size: 13px;
+    color: #888;
+  }
+  @keyframes rm-scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-33.333%); }
+  }
+  @media (max-width: 767px) {
+    .rm__card {
+      width: 240px;
+    }
+    .rm__card--review {
+      min-height: 280px;
+      padding: 20px;
+    }
+    .rm__card--image {
+      height: 280px;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Reviews Marquee",
+  "tag": "section",
+  "disabled_on": {
+    "groups": ["header", "footer", "custom.overlay"]
+  },
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "The Hype Is Real"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background color",
+      "default": "#eaeaee"
+    },
+    {
+      "type": "color",
+      "id": "star_color",
+      "label": "Star color",
+      "default": "#7c6faa"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "default": 150,
+      "min": 0,
+      "max": 200,
+      "step": 5,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "default": 150,
+      "min": 0,
+      "max": 200,
+      "step": 5,
+      "unit": "px"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "review",
+      "name": "Review",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Perfect for on-the-go"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Review text",
+          "default": "I love how quick and foolproof it is. It stays cute all day and fits right into my bag."
+        },
+        {
+          "type": "text",
+          "id": "author",
+          "label": "Author name",
+          "default": "Marisol R."
+        },
+        {
+          "type": "text",
+          "id": "subtitle",
+          "label": "Subtitle",
+          "default": "Happy customer"
+        }
+      ]
+    },
+    {
+      "type": "image",
+      "name": "Image",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Reviews Marquee",
+      "blocks": [
+        {
+          "type": "review",
+          "settings": {
+            "title": "Perfect for on-the-go",
+            "text": "I love how quick and foolproof it is. It stays cute all day and fits right into my bag.",
+            "author": "Marisol R.",
+            "subtitle": "Happy customer"
+          }
+        },
+        {
+          "type": "image"
+        },
+        {
+          "type": "review",
+          "settings": {
+            "title": "So effortless",
+            "text": "I can throw this on in two minutes and it always looks good. The finish is super natural and fresh.",
+            "author": "Natalie S.",
+            "subtitle": "Happy customer"
+          }
+        },
+        {
+          "type": "image"
+        },
+        {
+          "type": "review",
+          "settings": {
+            "title": "My new everyday favorite",
+            "text": "This has officially become part of my daily routine. It's lightweight, easy to use, and never feels heavy.",
+            "author": "Aliyyah M.",
+            "subtitle": "12 days ago"
+          }
+        },
+        {
+          "type": "image"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

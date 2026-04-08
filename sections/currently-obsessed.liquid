@@ -1,0 +1,286 @@
+{%- capture style -%}
+  --section-pt: {{ section.settings.padding_top }}; --section-pb: {{ section.settings.padding_bottom }};
+{%- endcapture -%}
+
+<div
+  class="section{% if section.settings.padding_top < 30 %} pt-min{% endif %}{% if section.settings.padding_bottom < 30 %} pb-min{% endif %}"
+  style="{{ style | strip | strip_newlines }}"
+>
+  <currently-obsessed class="co__wrapper" data-section-id="{{ section.id }}">
+    {% for block in section.blocks %}
+      {% if forloop.first %}
+        <div class="co__inner" style="background-color: {{ block.settings.bg_color }}; transition: background-color 0.5s ease;">
+      {% endif %}
+    {% endfor %}
+    {% if section.blocks.size == 0 %}
+      <div class="co__inner" style="background-color: #f5e6e0;">
+    {% endif %}
+      <div class="fluid_container">
+        <div class="co__grid">
+          <div class="co__left">
+            <h2 class="co__heading">{{ section.settings.heading }}</h2>
+            <p class="co__desc">{{ section.settings.description }}</p>
+            <div class="co__nav">
+              {%- for block in section.blocks -%}
+                <div
+                  class="co__nav-item{% if forloop.first %} active{% endif %}"
+                  data-index="{{ forloop.index0 }}"
+                  data-bg="{{ block.settings.bg_color }}"
+                  {{ block.shopify_attributes }}
+                >
+                  {{ block.settings.title }}
+                </div>
+              {%- endfor -%}
+            </div>
+          </div>
+          <div class="co__right">
+            {%- for block in section.blocks -%}
+              <div class="co__image{% if forloop.first %} active{% endif %}" data-index="{{ forloop.index0 }}">
+                {%- if block.settings.image != blank -%}
+                  <img
+                    src="{{ block.settings.image | image_url: width: 800 }}"
+                    alt="{{ block.settings.title }}"
+                    width="800"
+                    height="800"
+                    loading="lazy"
+                    style="width:100%;height:100%;object-fit:cover;border-radius:20px;"
+                  >
+                {%- else -%}
+                  <div style="width:100%;aspect-ratio:1;background:#ddd;border-radius:20px;"></div>
+                {%- endif -%}
+              </div>
+            {%- endfor -%}
+          </div>
+        </div>
+      </div>
+    </div>
+  </currently-obsessed>
+</div>
+
+<style>
+  .co__inner {
+    padding: 60px 0;
+  }
+  .co__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+  }
+  .co__heading {
+    font-family: var(--heading-font);
+    font-size: 60px;
+    font-weight: 400;
+    text-transform: uppercase;
+    line-height: 1;
+    margin: 0 0 20px 0;
+    color: #000;
+  }
+  .co__desc {
+    font-family: var(--body-font);
+    font-size: 17px;
+    color: #333;
+    line-height: 1.6;
+    margin: 0 0 40px 0;
+    max-width: 500px;
+  }
+  .co__nav {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .co__nav-item {
+    font-family: var(--heading-font);
+    font-size: 49px;
+    font-weight: 400;
+    text-transform: uppercase;
+    color: #c0b8b0;
+    cursor: pointer;
+    transition: color 0.3s ease, transform 0.3s ease;
+    line-height: 1.2;
+  }
+  .co__nav-item.active {
+    color: #000;
+    transform: translateX(15px);
+  }
+  .co__nav-item:hover {
+    color: #555;
+  }
+  .co__right {
+    position: relative;
+    aspect-ratio: 1;
+  }
+  .co__image {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+  }
+  .co__image.active {
+    opacity: 1;
+    position: relative;
+  }
+  @media (max-width: 767px) {
+    .co__grid {
+      grid-template-columns: 1fr;
+      gap: 30px;
+    }
+    .co__heading {
+      font-size: 36px;
+    }
+    .co__nav-item {
+      font-size: 28px;
+    }
+    .co__nav-item.active {
+      transform: translateX(10px);
+    }
+    .co__desc {
+      margin-bottom: 25px;
+    }
+  }
+</style>
+
+<script>
+  class CurrentlyObsessed extends HTMLElement {
+    constructor() {
+      super();
+      this.navItems = this.querySelectorAll('.co__nav-item');
+      this.images = this.querySelectorAll('.co__image');
+      this.inner = this.querySelector('.co__inner');
+      this.init();
+    }
+    init() {
+      this.navItems.forEach((item) => {
+        item.addEventListener('click', () => {
+          const index = item.dataset.index;
+          const bg = item.dataset.bg;
+          this.navItems.forEach(n => n.classList.remove('active'));
+          this.images.forEach(img => {
+            img.classList.remove('active');
+            img.style.position = 'absolute';
+          });
+          item.classList.add('active');
+          const activeImg = this.querySelector(`.co__image[data-index="${index}"]`);
+          if (activeImg) {
+            activeImg.classList.add('active');
+            activeImg.style.position = 'relative';
+          }
+          if (bg && this.inner) {
+            this.inner.style.backgroundColor = bg;
+          }
+        });
+      });
+    }
+  }
+  customElements.define('currently-obsessed', CurrentlyObsessed);
+</script>
+
+{% schema %}
+{
+  "name": "Currently Obsessed",
+  "tag": "section",
+  "disabled_on": {
+    "groups": ["header", "footer", "custom.overlay"]
+  },
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Currently Obsessed"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "Curated edits of our most-worn formulas and shades, thoughtfully grouped so you don't have to overthink it."
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "default": 0,
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "default": 0,
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "category",
+      "name": "Category",
+      "limit": 6,
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Category Name"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "color",
+          "id": "bg_color",
+          "label": "Background color",
+          "default": "#f5e6e0"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Currently Obsessed",
+      "blocks": [
+        {
+          "type": "category",
+          "settings": {
+            "title": "Low-Effort Glow",
+            "bg_color": "#f5e6e0"
+          }
+        },
+        {
+          "type": "category",
+          "settings": {
+            "title": "Main Character Eyes",
+            "bg_color": "#e6e0f0"
+          }
+        },
+        {
+          "type": "category",
+          "settings": {
+            "title": "Finishing Touches",
+            "bg_color": "#e0f0e6"
+          }
+        },
+        {
+          "type": "category",
+          "settings": {
+            "title": "Soft Lips Club",
+            "bg_color": "#f0e0e6"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

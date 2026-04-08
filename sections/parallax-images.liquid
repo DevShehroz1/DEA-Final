@@ -1,0 +1,264 @@
+{%- capture style -%}
+  --section-pt: {{ section.settings.padding_top }}; --section-pb: {{ section.settings.padding_bottom }};
+{%- endcapture -%}
+
+<section
+  id="ParallaxImages-{{ section.id }}"
+  class="section parallax-images{% if section.settings.padding_top < 30 %} pt-min{% endif %}{% if section.settings.padding_bottom < 30 %} pb-min{% endif %}"
+  style="{{ style | strip | strip_newlines }}; background-color: {{ section.settings.bg_color }};"
+>
+  <div class="container">
+    <div class="pi__wrapper">
+      <div class="pi__images">
+        <div class="pi__polaroid pi__polaroid--left" data-parallax-speed="-1">
+          {%- if section.settings.image_1 != blank -%}
+            <img src="{{ section.settings.image_1 | image_url: width: 600 }}" alt="{{ section.settings.image_1.alt | default: 'Image' }}" loading="lazy">
+          {%- else -%}
+            {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+          {%- endif -%}
+        </div>
+        <div class="pi__polaroid pi__polaroid--right" data-parallax-speed="1">
+          {%- if section.settings.image_2 != blank -%}
+            <img src="{{ section.settings.image_2 | image_url: width: 600 }}" alt="{{ section.settings.image_2.alt | default: 'Image' }}" loading="lazy">
+          {%- else -%}
+            {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+          {%- endif -%}
+        </div>
+      </div>
+      <div class="pi__content">
+        <h2 class="pi__heading">
+          {{ section.settings.heading_line1 }}<br>
+          <span class="pi__heading-accent">{{ section.settings.heading_line2 }}</span>
+        </h2>
+        <p class="pi__text">{{ section.settings.text }}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .pi__wrapper {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 40px;
+  }
+  .pi__images {
+    position: relative;
+    flex: 0 0 45%;
+    min-height: 500px;
+  }
+  .pi__polaroid {
+    position: absolute;
+    background: #fff;
+    padding: 10px 10px 40px 10px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    transition: transform 0.1s ease-out;
+    will-change: transform;
+  }
+  .pi__polaroid img,
+  .pi__polaroid .placeholder-svg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .pi__polaroid--left {
+    width: 280px;
+    height: 380px;
+    top: 80px;
+    left: -30px;
+    transform: rotate(-5deg);
+    z-index: 1;
+  }
+  .pi__polaroid--right {
+    width: 300px;
+    height: 420px;
+    top: -10px;
+    left: 150px;
+    transform: rotate(3deg);
+    z-index: 2;
+  }
+  .pi__content {
+    flex: 1;
+    text-align: center;
+    padding-right: 20px;
+  }
+  .pi__heading {
+    font-family: var(--heading-font) !important;
+    font-size: 67px !important;
+    font-weight: 800 !important;
+    text-transform: uppercase !important;
+    line-height: 1 !important;
+    margin: 0 0 20px 0 !important;
+    color: #000 !important;
+  }
+  .pi__heading-accent {
+    position: relative;
+    display: inline-block;
+    z-index: 1;
+  }
+  .pi__heading-accent::after {
+    content: '' !important;
+    position: absolute !important;
+    bottom: 2px;
+    left: -4px;
+    right: -4px;
+    height: 20px;
+    background: {{ section.settings.accent_color }} !important;
+    border-radius: 10px;
+    z-index: -1;
+    opacity: 0.7;
+    display: block !important;
+  }
+  .pi__text {
+    font-family: var(--body-font) !important;
+    font-size: 19px !important;
+    line-height: 1.6 !important;
+    color: #444 !important;
+    max-width: 520px;
+    margin: 0 auto;
+  }
+  @media (max-width: 767px) {
+    .pi__wrapper {
+      flex-direction: column;
+      gap: 30px;
+      padding: 0 20px;
+    }
+    .pi__images {
+      flex: none;
+      width: 100%;
+      min-height: 380px;
+    }
+    .pi__polaroid--left {
+      width: 200px;
+      height: 280px;
+      top: 60px;
+      left: 10px;
+    }
+    .pi__polaroid--right {
+      width: 220px;
+      height: 300px;
+      top: 0;
+      left: 120px;
+    }
+    .pi__heading {
+      font-size: 36px !important;
+    }
+    .pi__content {
+      padding-right: 0;
+    }
+  }
+</style>
+
+<script>
+  (function() {
+    const section = document.getElementById('ParallaxImages-{{ section.id }}');
+    if (!section) return;
+    const polaroids = section.querySelectorAll('[data-parallax-speed]');
+
+    function onScroll() {
+      const rect = section.getBoundingClientRect();
+      const center = window.innerHeight / 2;
+      const offset = (rect.top + rect.height / 2 - center) / center;
+
+      polaroids.forEach(function(el) {
+        const speed = parseFloat(el.getAttribute('data-parallax-speed'));
+        const move = offset * speed * 60;
+        const baseRotation = el.classList.contains('pi__polaroid--left') ? -4 : 3;
+        el.style.transform = 'rotate(' + baseRotation + 'deg) translateY(' + move + 'px)';
+      });
+    }
+
+    let ticking = false;
+    window.addEventListener('scroll', function() {
+      if (!ticking) {
+        requestAnimationFrame(function() {
+          onScroll();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    });
+    onScroll();
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Parallax Images",
+  "tag": "section",
+  "disabled_on": {
+    "groups": ["header", "footer", "custom.overlay"]
+  },
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image_1",
+      "label": "Image 1 (left)"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_2",
+      "label": "Image 2 (right)"
+    },
+    {
+      "type": "text",
+      "id": "heading_line1",
+      "label": "Heading line 1",
+      "default": "Makeup, Made"
+    },
+    {
+      "type": "text",
+      "id": "heading_line2",
+      "label": "Heading line 2 (accented)",
+      "default": "Effortless."
+    },
+    {
+      "type": "textarea",
+      "id": "text",
+      "label": "Description",
+      "default": "Lightweight, buildable makeup infused with skincare-level ingredients. Easy to wear, easy to apply, and made for real routines —not overthinking."
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background color",
+      "default": "#eaeaee"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent underline color",
+      "default": "#7c6faa"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "default": 80,
+      "min": 0,
+      "max": 200,
+      "step": 5,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "default": 80,
+      "min": 0,
+      "max": 200,
+      "step": 5,
+      "unit": "px"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Parallax Images"
+    }
+  ]
+}
+{% endschema %}

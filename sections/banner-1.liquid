@@ -1,0 +1,432 @@
+{{ 'banner.css' | asset_url | stylesheet_tag }}
+<style>
+  .banner-1 {
+    position: relative;
+    padding-top: var(--section-pt, 0px);
+    padding-bottom: var(--section-pb, 0px);
+  }
+  .banner-1 .banner-1__inner {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+  }
+  .banner-1 .banner-1__media {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+  }
+  .banner-1 .banner-1__media img,
+  .banner-1 .banner-1__media picture {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .banner-1 .banner-1__media:after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-color: #000;
+    opacity: var(--overlay-opacity, 20%);
+    pointer-events: none;
+  }
+  .banner-1 .banner-1__content {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 60px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+  .banner-1 .banner-1__heading {
+    font-family: 'Clash Display', var(--heading-font), sans-serif;
+    font-weight: 500;
+    font-style: normal;
+    font-size: 40px;
+    line-height: 42px;
+    letter-spacing: 0;
+    text-align: center;
+    text-transform: uppercase;
+    color: #fff;
+    margin: 0 0 var(--heading-mb, 16px);
+    padding: 0;
+  }
+  .banner-1 .banner-1__subheading {
+    font-family: 'Clash Display', var(--heading-font), sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 18px;
+    line-height: 22px;
+    letter-spacing: 0;
+    text-align: center;
+    text-transform: uppercase;
+    color: #fff;
+    margin: 0 0 var(--subheading-mb, 20px);
+    padding: 0;
+  }
+  .banner-1 .banner-1__description {
+    font-family: 'Aeonik', var(--body-font), sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 18px;
+    line-height: 24px;
+    letter-spacing: 0;
+    text-align: center;
+    color: #fff;
+    max-width: 720px;
+    margin: 0 auto var(--description-mb, 32px);
+    padding: 0;
+  }
+  .banner-1 .banner-1__description p {
+    margin: 0 0 8px;
+  }
+  .banner-1 .banner-1__description p:last-child {
+    margin-bottom: 0;
+  }
+  .banner-1 .banner-1__btn-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+    align-items: center;
+  }
+  .banner-1 .banner-1__btn {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(28px) saturate(200%) brightness(1.08);
+    -webkit-backdrop-filter: blur(28px) saturate(200%) brightness(1.08);
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    color: #fff;
+    border-radius: 999px;
+    padding: 16px 40px;
+    font-family: 'Clash Display', var(--heading-font), sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 16px;
+    letter-spacing: 0.96px;
+    text-transform: uppercase;
+    text-align: center;
+    box-shadow:
+      inset 0 1px 1px rgba(255, 255, 255, 0.6),
+      inset 0 -1px 1px rgba(255, 255, 255, 0.15),
+      0 1px 2px rgba(0, 0, 0, 0.04),
+      0 8px 24px rgba(0, 0, 0, 0.12);
+    transition: all 0.3s ease;
+    overflow: hidden;
+  }
+  .banner-1 .banner-1__btn::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0) 40%, rgba(255, 255, 255, 0) 60%, rgba(255, 255, 255, 0.1) 100%);
+    pointer-events: none;
+  }
+  .banner-1 .banner-1__btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.5);
+    box-shadow:
+      inset 0 1px 1px rgba(255, 255, 255, 0.7),
+      inset 0 -1px 1px rgba(255, 255, 255, 0.2),
+      0 1px 2px rgba(0, 0, 0, 0.06),
+      0 12px 32px rgba(0, 0, 0, 0.16);
+  }
+  .banner-1 .banner-1__img-desktop {
+    display: block;
+  }
+  .banner-1 .banner-1__img-mobile {
+    display: none;
+  }
+  @media (max-width: 767.98px) {
+    .banner-1 .banner-1__img-desktop {
+      display: none;
+    }
+    .banner-1 .banner-1__img-mobile {
+      display: block;
+    }
+    .banner-1 .banner-1__heading {
+      font-size: 28px;
+      line-height: 32px;
+    }
+    .banner-1 .banner-1__subheading {
+      font-size: 14px;
+      line-height: 18px;
+    }
+    .banner-1 .banner-1__description {
+      font-size: 15px;
+      line-height: 22px;
+    }
+    .banner-1 .banner-1__content {
+      padding: 40px 20px;
+    }
+  }
+</style>
+{%- liquid
+  assign sec_st = section.settings
+  assign image_desktop = sec_st.image_desktop
+  assign image_mobile = sec_st.image_mobile | default: image_desktop
+-%}
+<div
+  id="banner-1-{{ section.id }}"
+  class="banner-1 color-{{ sec_st.color_scheme }} gradient"
+  style="--section-pt: {{ sec_st.padding_top }}px; --section-pb: {{ sec_st.padding_bottom }}px; --overlay-opacity: {{ sec_st.overlay_opacity }}%; --heading-mb: {{ sec_st.heading_spacing_bottom }}px; --subheading-mb: {{ sec_st.subheading_spacing_bottom }}px; --description-mb: {{ sec_st.description_spacing_bottom }}px;"
+>
+  <div class="{{ sec_st.section_width }}">
+    <div
+      class="banner-1__inner{% if sec_st.section_width != 'full_width' %} rounded{% endif %}"
+      style="min-height: {{ sec_st.mobile_height }}px;"
+    >
+      <div class="banner-1__media">
+        {%- if image_desktop != blank -%}
+          <img
+            class="banner-1__img-desktop"
+            src="{{ image_desktop | image_url: width: 2400 }}"
+            srcset="
+              {{ image_desktop | image_url: width: 750 }} 750w,
+              {{ image_desktop | image_url: width: 1100 }} 1100w,
+              {{ image_desktop | image_url: width: 1500 }} 1500w,
+              {{ image_desktop | image_url: width: 1920 }} 1920w,
+              {{ image_desktop | image_url: width: 2400 }} 2400w,
+              {{ image_desktop | image_url: width: 3000 }} 3000w
+            "
+            sizes="100vw"
+            alt="{{ image_desktop.alt | escape }}"
+            width="{{ image_desktop.width }}"
+            height="{{ image_desktop.height }}"
+            loading="lazy"
+          >
+        {%- endif -%}
+        {%- if image_mobile != blank -%}
+          <img
+            class="banner-1__img-mobile"
+            src="{{ image_mobile | image_url: width: 1200 }}"
+            srcset="
+              {{ image_mobile | image_url: width: 480 }} 480w,
+              {{ image_mobile | image_url: width: 750 }} 750w,
+              {{ image_mobile | image_url: width: 1100 }} 1100w,
+              {{ image_mobile | image_url: width: 1500 }} 1500w
+            "
+            sizes="100vw"
+            alt="{{ image_mobile.alt | escape }}"
+            width="{{ image_mobile.width }}"
+            height="{{ image_mobile.height }}"
+            loading="lazy"
+          >
+        {%- endif -%}
+        {%- if image_desktop == blank and image_mobile == blank -%}
+          {%- render 'placeholder-render', class: 'absolute inset-0 w-full h-full object-fit-cover' -%}
+        {%- endif -%}
+      </div>
+      <div
+        class="banner-1__content"
+        style="min-height: {{ sec_st.desktop_height }}px;"
+      >
+        {%- if sec_st.heading != blank -%}
+          <h2 class="banner-1__heading">{{ sec_st.heading }}</h2>
+        {%- endif -%}
+        {%- if sec_st.subheading != blank -%}
+          <div class="banner-1__subheading">{{ sec_st.subheading }}</div>
+        {%- endif -%}
+        {%- if sec_st.description != blank -%}
+          <div class="banner-1__description">{{ sec_st.description }}</div>
+        {%- endif -%}
+        {%- if sec_st.button_label != blank -%}
+          <div class="banner-1__btn-wrap">
+            <a
+              {% if sec_st.button_link != blank %}href="{{ sec_st.button_link }}"{% else %}role="link" aria-disabled="true"{% endif %}
+              class="banner-1__btn"
+              aria-label="{{ sec_st.button_label | escape }}"
+            >
+              {{ sec_st.button_label }}
+            </a>
+          </div>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</div>
+{% schema %}
+{
+  "name": "Banner 1",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Images"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_desktop",
+      "label": "Desktop image"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_mobile",
+      "label": "Mobile image"
+    },
+    {
+      "type": "range",
+      "id": "overlay_opacity",
+      "label": "Image overlay opacity",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "default": 20
+    },
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "THE SUMMR ROUTINE"
+    },
+    {
+      "type": "range",
+      "id": "heading_spacing_bottom",
+      "label": "Heading spacing bottom",
+      "min": 0,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "ONE CASE TO KEEP. SWITCH THE SCENT ANYTIME."
+    },
+    {
+      "type": "range",
+      "id": "subheading_spacing_bottom",
+      "label": "Subheading spacing bottom",
+      "min": 0,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description",
+      "default": "<p>When the refill runs out, twist it out, click a new one in. Four seconds. You're back. No new packaging. No starting over. Just a small shift that becomes the only way you want to do it. Choose your case. Find your scent. Refill when needed.</p>"
+    },
+    {
+      "type": "range",
+      "id": "description_spacing_bottom",
+      "label": "Description spacing bottom",
+      "min": 0,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "default": 32
+    },
+    {
+      "type": "header",
+      "content": "Button"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "START YOUR SUMMR"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "select",
+      "id": "section_width",
+      "label": "Section width",
+      "default": "full_width",
+      "options": [
+        { "value": "container", "label": "Container" },
+        { "value": "fluid_container", "label": "Fluid container" },
+        { "value": "stretch_width", "label": "Stretch width" },
+        { "value": "full_width", "label": "Full width" }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "desktop_height",
+      "label": "Desktop height",
+      "min": 300,
+      "max": 900,
+      "step": 10,
+      "unit": "px",
+      "default": 640
+    },
+    {
+      "type": "range",
+      "id": "mobile_height",
+      "label": "Mobile height",
+      "min": 200,
+      "max": 800,
+      "step": 10,
+      "unit": "px",
+      "default": 480
+    },
+    {
+      "type": "select",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1",
+      "options": [
+        { "value": "scheme-1", "label": "Scheme 1" },
+        { "value": "scheme-2", "label": "Scheme 2" },
+        { "value": "scheme-3", "label": "Scheme 3" },
+        { "value": "scheme-4", "label": "Scheme 4" },
+        { "value": "scheme-5", "label": "Scheme 5" }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "min": 0,
+      "max": 120,
+      "step": 2,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "min": 0,
+      "max": 120,
+      "step": 2,
+      "unit": "px",
+      "default": 0
+    }
+  ],
+  "presets": [
+    {
+      "name": "Banner 1"
+    }
+  ]
+}
+{% endschema %}

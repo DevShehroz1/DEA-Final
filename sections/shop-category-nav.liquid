@@ -1,0 +1,119 @@
+<style>
+  .scn { padding: 40px 20px 32px; text-align: center; }
+  .scn__heading {
+    font-family: 'Clash Display', var(--heading-font), sans-serif;
+    font-weight: 500;
+    font-size: 32px;
+    line-height: 36px;
+    letter-spacing: -0.01em;
+    text-transform: uppercase;
+    color: #000;
+    margin: 0 0 24px;
+  }
+  .scn__pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+  }
+  .scn__pill {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 28px;
+    border-radius: 999px;
+    background: #fff;
+    border: 1px solid rgba(0,0,0,0.08);
+    color: #111;
+    font-family: 'Clash Display', var(--heading-font), sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 16px;
+    letter-spacing: 0.6px;
+    text-transform: uppercase;
+    text-decoration: none;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.03);
+    transition: all 0.25s ease;
+    white-space: nowrap;
+  }
+  .scn__pill:hover {
+    background: #f5f5f5;
+    border-color: rgba(0,0,0,0.15);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.06), 0 6px 16px rgba(0,0,0,0.05);
+  }
+  @media (max-width: 767px) {
+    .scn { padding: 28px 16px 20px; }
+    .scn__heading { font-size: 24px; line-height: 28px; margin-bottom: 18px; }
+    .scn__pills { gap: 8px; }
+    .scn__pill { padding: 10px 20px; font-size: 11px; letter-spacing: 0.4px; }
+  }
+</style>
+{%- assign sec_st = section.settings -%}
+<div class="scn" style="background-color: {{ sec_st.bg_color }};">
+  {%- if sec_st.heading != blank -%}
+    <h2 class="scn__heading">{{ sec_st.heading }}</h2>
+  {%- endif -%}
+  {%- if section.blocks.size > 0 -%}
+    <div class="scn__pills">
+      {%- for block in section.blocks -%}
+        <a href="{{ block.settings.link | default: '#' }}" class="scn__pill" {{ block.shopify_attributes }}>
+          {{ block.settings.label }}
+        </a>
+      {%- endfor -%}
+    </div>
+  {%- endif -%}
+</div>
+{% schema %}
+{
+  "name": "Shop Category Nav",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "SHOP SUMMR"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background color",
+      "default": "#ffffff"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "pill",
+      "name": "Category",
+      "limit": 10,
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label",
+          "default": "SHOP ALL"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Shop Category Nav",
+      "blocks": [
+        { "type": "pill", "settings": { "label": "SHOP ALL" } },
+        { "type": "pill", "settings": { "label": "THE SOLID" } },
+        { "type": "pill", "settings": { "label": "THE MIST" } },
+        { "type": "pill", "settings": { "label": "SOLID RELOAD" } },
+        { "type": "pill", "settings": { "label": "MIST RELOAD" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

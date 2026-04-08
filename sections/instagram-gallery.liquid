@@ -1,0 +1,292 @@
+<style>
+  .ig-gallery {
+    padding-top: var(--section-pt, 0px);
+    padding-bottom: var(--section-pb, 60px);
+  }
+  .ig-gallery__inner {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+  .ig-gallery__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+  }
+  .ig-gallery__item {
+    position: relative;
+    border-radius: 16px;
+    overflow: hidden;
+    aspect-ratio: 3/4;
+  }
+  .ig-gallery__item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .ig-gallery__item-btn {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(28px) saturate(200%) brightness(1.08);
+    -webkit-backdrop-filter: blur(28px) saturate(200%) brightness(1.08);
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    color: #fff;
+    border-radius: 999px;
+    padding: 12px 28px;
+    font-family: 'Clash Display', var(--heading-font), sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 16px;
+    letter-spacing: 0.96px;
+    text-transform: uppercase;
+    text-align: center;
+    text-decoration: none;
+    white-space: nowrap;
+    box-shadow:
+      inset 0 1px 1px rgba(255, 255, 255, 0.6),
+      inset 0 -1px 1px rgba(255, 255, 255, 0.15),
+      0 1px 2px rgba(0, 0, 0, 0.04),
+      0 8px 24px rgba(0, 0, 0, 0.12);
+    transition: all 0.3s ease;
+    overflow: hidden;
+  }
+  .ig-gallery__item-btn::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0) 40%, rgba(255, 255, 255, 0) 60%, rgba(255, 255, 255, 0.1) 100%);
+    pointer-events: none;
+  }
+  .ig-gallery__item-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.5);
+    box-shadow:
+      inset 0 1px 1px rgba(255, 255, 255, 0.7),
+      inset 0 -1px 1px rgba(255, 255, 255, 0.2),
+      0 1px 2px rgba(0, 0, 0, 0.06),
+      0 12px 32px rgba(0, 0, 0, 0.16);
+  }
+  .ig-gallery__cta-wrap {
+    display: flex;
+    justify-content: center;
+    margin-top: 32px;
+  }
+  .ig-gallery__cta {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.04);
+    backdrop-filter: blur(28px) saturate(180%);
+    -webkit-backdrop-filter: blur(28px) saturate(180%);
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    color: #111;
+    border-radius: 999px;
+    padding: 16px 40px;
+    font-family: 'Clash Display', var(--heading-font), sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 16px;
+    letter-spacing: 0.96px;
+    text-transform: uppercase;
+    text-align: center;
+    text-decoration: none;
+    box-shadow:
+      inset 0 1px 1px rgba(255, 255, 255, 0.9),
+      inset 0 -1px 1px rgba(0, 0, 0, 0.04),
+      0 1px 2px rgba(0, 0, 0, 0.04),
+      0 8px 24px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+    overflow: hidden;
+  }
+  .ig-gallery__cta::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0) 40%, rgba(255, 255, 255, 0) 60%, rgba(255, 255, 255, 0.2) 100%);
+    pointer-events: none;
+  }
+  .ig-gallery__cta:hover {
+    background: rgba(0, 0, 0, 0.08);
+    border-color: rgba(0, 0, 0, 0.2);
+  }
+  @media (max-width: 767.98px) {
+    .ig-gallery__grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
+    .ig-gallery__item {
+      border-radius: 12px;
+    }
+    .ig-gallery__item-btn {
+      padding: 8px 18px;
+      font-size: 10px;
+      letter-spacing: 0.6px;
+      bottom: 12px;
+    }
+  }
+</style>
+{%- liquid
+  assign sec_st = section.settings
+-%}
+<div
+  id="ig-gallery-{{ section.id }}"
+  class="ig-gallery color-{{ sec_st.color_scheme }}"
+  style="--section-pt: {{ sec_st.padding_top }}px; --section-pb: {{ sec_st.padding_bottom }}px;"
+>
+  <div class="ig-gallery__inner">
+    {%- if section.blocks.size > 0 -%}
+      <div class="ig-gallery__grid">
+        {%- for block in section.blocks -%}
+          {%- assign b = block.settings -%}
+          <div class="ig-gallery__item" {{ block.shopify_attributes }}>
+            {%- if b.image != blank -%}
+              <img
+                src="{{ b.image | image_url: width: 800 }}"
+                srcset="
+                  {{ b.image | image_url: width: 400 }} 400w,
+                  {{ b.image | image_url: width: 600 }} 600w,
+                  {{ b.image | image_url: width: 800 }} 800w
+                "
+                sizes="(max-width: 767px) 50vw, 25vw"
+                alt="{{ b.image.alt | default: 'Gallery image' | escape }}"
+                width="{{ b.image.width }}"
+                height="{{ b.image.height }}"
+                loading="lazy"
+              >
+            {%- else -%}
+              <div style="width: 100%; height: 100%; background: #ddd;"></div>
+            {%- endif -%}
+            {%- if b.button_label != blank -%}
+              <a
+                href="{{ b.button_link | default: sec_st.instagram_link }}"
+                target="_blank"
+                rel="noopener"
+                class="ig-gallery__item-btn"
+              >
+                {{ b.button_label }}
+              </a>
+            {%- endif -%}
+          </div>
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+    {%- if sec_st.bottom_button_label != blank -%}
+      <div class="ig-gallery__cta-wrap">
+        <a
+          href="{{ sec_st.instagram_link | default: '#' }}"
+          target="_blank"
+          rel="noopener"
+          class="ig-gallery__cta"
+        >
+          <span style="position: relative; z-index: 1;">{{ sec_st.bottom_button_label }}</span>
+        </a>
+      </div>
+    {%- endif -%}
+  </div>
+</div>
+{% schema %}
+{
+  "name": "Instagram Gallery",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "url",
+      "id": "instagram_link",
+      "label": "Instagram link",
+      "info": "Your Instagram profile URL"
+    },
+    {
+      "type": "text",
+      "id": "bottom_button_label",
+      "label": "Bottom button label",
+      "default": "@GETSUMMR"
+    },
+    {
+      "type": "select",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1",
+      "options": [
+        { "value": "scheme-1", "label": "Scheme 1" },
+        { "value": "scheme-2", "label": "Scheme 2" },
+        { "value": "scheme-3", "label": "Scheme 3" },
+        { "value": "scheme-4", "label": "Scheme 4" },
+        { "value": "scheme-5", "label": "Scheme 5" }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "min": 0,
+      "max": 120,
+      "step": 2,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "min": 0,
+      "max": 120,
+      "step": 2,
+      "unit": "px",
+      "default": 60
+    }
+  ],
+  "blocks": [
+    {
+      "type": "image",
+      "name": "Image",
+      "limit": 8,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "button_label",
+          "label": "Button label on image",
+          "info": "Leave blank for no button"
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "Button link (overrides main Instagram link)"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Instagram Gallery",
+      "blocks": [
+        { "type": "image" },
+        {
+          "type": "image",
+          "settings": {
+            "button_label": "@GETSUMMR"
+          }
+        },
+        { "type": "image" },
+        { "type": "image" }
+      ]
+    }
+  ]
+}
+{% endschema %}

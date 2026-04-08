@@ -1,0 +1,344 @@
+{%- capture style -%}
+  --section-pt: {{ section.settings.padding_top }}; --section-pb: {{ section.settings.padding_bottom }};
+{%- endcapture -%}
+
+<section
+  class="section{% if section.settings.padding_top < 30 %} pt-min{% endif %}{% if section.settings.padding_bottom < 30 %} pb-min{% endif %}"
+  style="{{ style | strip | strip_newlines }}; background-color: {{ section.settings.bg_color }};"
+>
+  <div class="hiw__container">
+    <h2 class="hiw__title">{{ section.settings.heading }}</h2>
+    <div class="hiw__layout">
+      <!-- Step 1: Top-left -->
+      {%- if section.blocks.size > 0 -%}
+        {%- assign block = section.blocks[0] -%}
+        <div class="hiw__step hiw__step--tl" {{ block.shopify_attributes }}>
+          <div class="hiw__step-text hiw__step-text--right">
+            <h3 class="hiw__step-heading">{{ block.settings.heading }}</h3>
+            <p class="hiw__step-desc">{{ block.settings.description }}</p>
+          </div>
+          <div class="hiw__dot">
+            <span class="hiw__dot-inner"></span>
+          </div>
+        </div>
+      {%- endif -%}
+
+      <!-- Center Product Image -->
+      <div class="hiw__product">
+        {%- if section.settings.product_image != blank -%}
+          <img
+            src="{{ section.settings.product_image | image_url: width: 600 }}"
+            alt="Product"
+            loading="lazy"
+            width="600"
+            height="600"
+          >
+        {%- else -%}
+          <img
+            src="https://cdn.shopify.com/s/files/1/0778/7482/3353/files/0b3a792668af4c7988dd6cc237aae3f6dda133cf.png?v=1775157709"
+            alt="Product"
+            loading="lazy"
+            width="600"
+            height="600"
+          >
+        {%- endif -%}
+      </div>
+
+      <!-- Step 2: Middle-right -->
+      {%- if section.blocks.size > 1 -%}
+        {%- assign block = section.blocks[1] -%}
+        <div class="hiw__step hiw__step--mr" {{ block.shopify_attributes }}>
+          <div class="hiw__dot">
+            <span class="hiw__dot-inner"></span>
+          </div>
+          <div class="hiw__step-text hiw__step-text--left">
+            <h3 class="hiw__step-heading">{{ block.settings.heading }}</h3>
+            <p class="hiw__step-desc">{{ block.settings.description }}</p>
+          </div>
+        </div>
+      {%- endif -%}
+
+      <!-- Step 3: Bottom-left -->
+      {%- if section.blocks.size > 2 -%}
+        {%- assign block = section.blocks[2] -%}
+        <div class="hiw__step hiw__step--bl" {{ block.shopify_attributes }}>
+          <div class="hiw__step-text hiw__step-text--right">
+            <h3 class="hiw__step-heading">{{ block.settings.heading }}</h3>
+            <p class="hiw__step-desc">{{ block.settings.description }}</p>
+          </div>
+          <div class="hiw__dot">
+            <span class="hiw__dot-inner"></span>
+          </div>
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+<style>
+  .hiw__container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 40px;
+  }
+  .hiw__title {
+    font-family: var(--heading-font);
+    font-size: 40px;
+    font-weight: 500;
+    text-transform: uppercase;
+    text-align: center;
+    line-height: 30px;
+    letter-spacing: 0;
+    margin: 0 0 60px 0;
+    color: #000;
+  }
+  .hiw__layout {
+    position: relative;
+    min-height: 600px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  /* Center product image */
+  .hiw__product {
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(12deg);
+    width: 500px;
+    z-index: 1;
+    animation: hiw-float 3s ease-in-out infinite;
+  }
+  .hiw__product img {
+    width: 100%;
+    height: auto;
+    display: block;
+    filter: drop-shadow(0 15px 40px rgba(0,0,0,0.15)) drop-shadow(0 5px 15px rgba(0,0,0,0.08));
+  }
+  @keyframes hiw-float {
+    0%, 100% { transform: translate(-50%, -50%) rotate(12deg) translateY(0); }
+    50% { transform: translate(-50%, -50%) rotate(12deg) translateY(-15px); }
+  }
+
+  /* Steps */
+  .hiw__step {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    z-index: 2;
+  }
+
+  /* Step 1: top-left */
+  .hiw__step--tl {
+    top: 8%;
+    left: 2%;
+  }
+
+  /* Step 2: middle-right */
+  .hiw__step--mr {
+    top: 48%;
+    right: 0%;
+  }
+
+  /* Step 3: bottom-left */
+  .hiw__step--bl {
+    bottom: 8%;
+    left: 5%;
+  }
+
+  /* Dot indicator */
+  .hiw__dot {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    border: 1px solid rgba(0,0,0,0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    background: transparent;
+  }
+  .hiw__dot-inner {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #000;
+  }
+
+  /* Text blocks */
+  .hiw__step-text {
+    max-width: 320px;
+  }
+  .hiw__step-text--right {
+    text-align: right;
+  }
+  .hiw__step-text--left {
+    text-align: left;
+  }
+  .hiw__step-heading {
+    font-family: var(--heading-font);
+    font-size: 18px;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0;
+    line-height: 20px;
+    margin: 0 0 6px 0;
+    color: #000;
+  }
+  .hiw__step-desc {
+    font-family: var(--body-font);
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 16px;
+    letter-spacing: 0;
+    margin: 0;
+    color: #444;
+  }
+
+  /* Mobile */
+  @media (max-width: 767px) {
+    .hiw__layout {
+      min-height: auto;
+      position: relative;
+      padding-top: 20px;
+    }
+    .hiw__product {
+      position: relative;
+      top: auto;
+      left: auto;
+      transform: rotate(12deg);
+      width: 220px;
+      margin: 30px auto;
+    }
+    .hiw__step {
+      position: relative;
+      top: auto !important;
+      left: auto !important;
+      right: auto !important;
+      bottom: auto !important;
+      flex-direction: row;
+      justify-content: center;
+      margin-bottom: 30px;
+    }
+    .hiw__step--tl {
+      order: 1;
+    }
+    .hiw__step--mr {
+      order: 3;
+    }
+    .hiw__step--bl {
+      order: 4;
+    }
+    .hiw__product {
+      order: 2;
+    }
+    .hiw__step-text--right,
+    .hiw__step-text--left {
+      text-align: left;
+    }
+    .hiw__layout {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "How It Works",
+  "tag": "section",
+  "disabled_on": {
+    "groups": ["header", "footer", "custom.overlay"]
+  },
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "How Summr Works"
+    },
+    {
+      "type": "image_picker",
+      "id": "product_image",
+      "label": "Product image"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background color",
+      "default": "#eaeaee"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "default": 80,
+      "min": 0,
+      "max": 200,
+      "step": 5,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "default": 80,
+      "min": 0,
+      "max": 200,
+      "step": 5,
+      "unit": "px"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "step",
+      "name": "Step",
+      "limit": 3,
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Choose Your Essential"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description",
+          "default": "Select your signature case or spray that reflects your vibe."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "How It Works",
+      "blocks": [
+        {
+          "type": "step",
+          "settings": {
+            "heading": "Choose Your Essential",
+            "description": "Select your signature case or spray that reflects your vibe."
+          }
+        },
+        {
+          "type": "step",
+          "settings": {
+            "heading": "Find Your Fragrance",
+            "description": "Explore our curated scent refills and choose the one that feels like you."
+          }
+        },
+        {
+          "type": "step",
+          "settings": {
+            "heading": "Make It Yours",
+            "description": "Purchase once or subscribe for effortless refills delivered when you need them."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
