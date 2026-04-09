@@ -11,10 +11,11 @@
   "sections": {
     "breadcrumb": {
       "type": "breadcrumb",
+      "disabled": true,
       "settings": {
         "section_width": "container",
         "color_scheme": "",
-        "next_prev": true
+        "next_prev": false
       }
     },
     "main": {
