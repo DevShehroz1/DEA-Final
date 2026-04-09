@@ -110,6 +110,7 @@
     },
     "product-set": {
       "type": "product-set",
+      "disabled": true,
       "settings": {
         "section_width": "container",
         "color_scheme": "",
@@ -131,19 +132,6 @@
         "reset_spacing": false
       }
     },
-    "1716793714ce89e457": {
-      "type": "apps",
-      "settings": {}
-    },
-    "divider_TKLM6L": {
-      "type": "divider",
-      "settings": {
-        "section_width": "container",
-        "border_height": 1,
-        "border_color": "#ebebeb",
-        "reset_spacing": false
-      }
-    },
     "related_products": {
       "type": "related-products",
       "settings": {
@@ -161,49 +149,12 @@
         "padding_bottom": 0,
         "reset_spacing": false
       }
-    },
-    "divider_HtLXd3": {
-      "type": "divider",
-      "settings": {
-        "section_width": "container",
-        "border_height": 1,
-        "border_color": "#ebebeb",
-        "reset_spacing": false
-      }
-    },
-    "products_recently_viewed_GdCNUL": {
-      "type": "products-recently-viewed",
-      "settings": {
-        "section_width": "container",
-        "color_scheme": "",
-        "heading": "Recently Viewed",
-        "description": "Explore your recently viewed items, blending quality and style for a refined living experience.",
-        "header_size": "medium",
-        "header_alignment": "center",
-        "items_to_show": 8,
-        "items_per_row": 4,
-        "column_gap": 30,
-        "show_arrow": true,
-        "carousel_pagination": "show_dots_on_mobile",
-        "infinite": false,
-        "autoplay": false,
-        "autorotate_speed": 5,
-        "reveal": false,
-        "items_per_row_mobile": 2,
-        "padding_top": 0,
-        "padding_bottom": 0,
-        "reset_spacing": false
-      }
     }
   },
   "order": [
     "breadcrumb",
     "main",
     "product-set",
-    "1716793714ce89e457",
-    "divider_TKLM6L",
-    "related_products",
-    "divider_HtLXd3",
-    "products_recently_viewed_GdCNUL"
+    "related_products"
   ]
 }
