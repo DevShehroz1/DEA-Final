@@ -9,24 +9,6 @@
  */
 {
   "sections": {
-    "hero_dea_main": {
-      "type": "hero-dea",
-      "settings": {
-        "eyebrow": "Press-On Perfection",
-        "heading_line1": "Salon Nails.",
-        "heading_line2": "Zero Appointment.",
-        "description": "Premium press-on nails that last up to 2 weeks. Apply in minutes, look like you spent hours.",
-        "button_label": "Shop the Collection",
-        "button_link": "shopify://collections/all",
-        "bg_color": "#f5f0eb",
-        "accent_color": "#8b6459",
-        "text_color": "#0a0a0a",
-        "button_bg": "#0a0a0a",
-        "button_text_color": "#f5f0eb",
-        "padding_top": 0,
-        "padding_bottom": 0
-      }
-    },
     "slideshow_8KKtNU": {
       "type": "slideshow",
       "blocks": {
@@ -100,8 +82,8 @@
         "collection_zrX6LK": {
           "type": "collection",
           "settings": {
-            "collection": "all",
-            "collection_title": "THE SHADES"
+            "collection": "frontpage",
+            "collection_title": "BUILD YOUR SUMMR STORY"
           }
         }
       },
@@ -143,13 +125,51 @@
         "reset_spacing": false
       }
     },
+    "how_it_works_ehWcBh": {
+      "type": "how-it-works",
+      "blocks": {
+        "step_6qwjtp": {
+          "type": "step",
+          "settings": {
+            "heading": "Choose Your Essential",
+            "description": "Select your signature case or spray that reflects your vibe."
+          }
+        },
+        "step_HWpCW7": {
+          "type": "step",
+          "settings": {
+            "heading": "Find Your Fragrance",
+            "description": "Explore our curated scent refills and choose the one that feels like you."
+          }
+        },
+        "step_zrTdDf": {
+          "type": "step",
+          "settings": {
+            "heading": "Make It Yours",
+            "description": "Purchase once or subscribe for effortless refills delivered when you need them."
+          }
+        }
+      },
+      "block_order": [
+        "step_6qwjtp",
+        "step_HWpCW7",
+        "step_zrTdDf"
+      ],
+      "name": "How It Works",
+      "settings": {
+        "heading": "How Summr Works",
+        "bg_color": "#eaeaee",
+        "padding_top": 80,
+        "padding_bottom": 80
+      }
+    },
     "currently_obsessed_fh7pWK": {
       "type": "currently-obsessed",
       "blocks": {
         "category_myddRa": {
           "type": "category",
           "settings": {
-            "title": "EVERYDAY NUDES",
+            "title": "Low-Effort Glow",
             "bg_color": "#f5e6e0",
             "link": ""
           }
@@ -157,7 +177,7 @@
         "category_RW6qwT": {
           "type": "category",
           "settings": {
-            "title": "DATE NIGHT DARKS",
+            "title": "Main Character Eyes",
             "bg_color": "#e6e0f0",
             "link": ""
           }
@@ -165,7 +185,7 @@
         "category_N9RUag": {
           "type": "category",
           "settings": {
-            "title": "BOLD STATEMENTS",
+            "title": "Finishing Touches",
             "bg_color": "#e0f0e6",
             "link": ""
           }
@@ -173,7 +193,7 @@
         "category_JxgiiV": {
           "type": "category",
           "settings": {
-            "title": "Clean Classics",
+            "title": "Soft Lips Club",
             "bg_color": "#f0e0e6",
             "link": ""
           }
@@ -185,12 +205,62 @@
         "category_N9RUag",
         "category_JxgiiV"
       ],
+      "disabled": true,
       "name": "Currently Obsessed",
       "settings": {
-        "heading": "FIND YOUR SHADE",
-        "description": "Curated sets by vibe, occasion, and mood so you don't have to scroll endlessly to find the one.",
+        "heading": "Currently Obsessed",
+        "description": "Curated edits of our most-worn formulas and shades, thoughtfully grouped so you don't have to overthink it.",
         "padding_top": 0,
         "padding_bottom": 0
+      }
+    },
+    "testimonials_grid_def456": {
+      "type": "testimonials-grid",
+      "blocks": {
+        "t1": {
+          "type": "testimonial",
+          "settings": {
+            "rating": 5,
+            "text": "I never thought about fragrance actually doing something. Now I can't go back.",
+            "name": "ADITI, MUMBAI"
+          }
+        },
+        "t2": {
+          "type": "testimonial",
+          "settings": {
+            "rating": 5,
+            "text": "It's so light you forget you're wearing it. Then you realise you've felt fresh all day.",
+            "name": "ROHAN, BENGALURU"
+          }
+        },
+        "t3": {
+          "type": "testimonial",
+          "settings": {
+            "rating": 5,
+            "text": "Came for the refill idea. The scent made me stay.",
+            "name": "NEHA, DELHI"
+          }
+        },
+        "t4": {
+          "type": "testimonial",
+          "settings": {
+            "rating": 5,
+            "text": "First deodorant that actually lasts through Mumbai humidity.",
+            "name": "VIMAL, MUMBAI"
+          }
+        }
+      },
+      "block_order": [
+        "t1",
+        "t2",
+        "t3",
+        "t4"
+      ],
+      "settings": {
+        "heading": "TRIED, TESTED AND TRUSTED",
+        "color_scheme": "scheme-1",
+        "padding_top": 48,
+        "padding_bottom": 122
       }
     },
     "c_four_KJpT6P": {
@@ -199,29 +269,29 @@
         "column_jDz8Ct": {
           "type": "column",
           "settings": {
-            "heading": "SALON-GRADE QUALITY",
-            "description": "Premium gel finish that looks professionally done. No one will know they're press-ons."
+            "heading": "Skin-First Formulas",
+            "description": "Makeup that treats your skin while you wear it."
           }
         },
         "column_Myanqc": {
           "type": "column",
           "settings": {
-            "heading": "10-MINUTE APPLICATION",
-            "description": "Skip the 2-hour salon visit. Perfect nails in under 10 minutes, every time."
+            "heading": "Inclusive Shades",
+            "description": "Made to work across tones and undertones."
           }
         },
         "column_ca3444": {
           "type": "column",
           "settings": {
-            "heading": "LASTS UP TO 2 WEEKS",
-            "description": "Strong hold that won't pop off. Live your life without worrying about your nails."
+            "heading": "Multi-Use Essentials",
+            "description": "Minimal effort. Maximum options."
           }
         },
         "column_Rjb6Ta": {
           "type": "column",
           "settings": {
-            "heading": "GENTLE REMOVAL",
-            "description": "No damage. No drilling. Our Oil Remover takes them off softly with zero nail trauma."
+            "heading": "Clean & Conscious",
+            "description": "Vegan. Cruelty-free. Thoughtfully formulated."
           }
         }
       },
@@ -231,38 +301,11 @@
         "column_ca3444",
         "column_Rjb6Ta"
       ],
+      "disabled": true,
       "name": "C Four",
       "settings": {
         "padding_top": 50,
         "padding_bottom": 50
-      }
-    },
-    "parallax_images_WbkcRU": {
-      "type": "parallax-images",
-      "name": "Parallax Images",
-      "settings": {
-        "heading_line1": "NAILS THAT FIT",
-        "heading_line2": "YOUR LIFE.",
-        "text": "We started DEA because getting your nails done shouldn't require a 2-hour appointment, a $60+ bill, and damage to your natural nails. Our press-ons are designed for real life easy to apply, impossible to tell apart from salon sets, and gentle to remove.",
-        "bg_color": "#eaeaee",
-        "accent_color": "#7c6faa",
-        "padding_top": 185,
-        "padding_bottom": 115
-      }
-    },
-    "scroll_text_reveal_87qCbw": {
-      "type": "scroll-text-reveal",
-      "name": "Scroll Text Reveal",
-      "settings": {
-        "image": "shopify://shop_images/NewYear_Homepage_Header_Alle_Produkte-1.webp",
-        "image_rotation": -6,
-        "text": "YOUR NEXT MANICURE SHOULDN'T COST $60.\nOR TAKE 2 HOURS. OR DAMAGE YOUR NAILS. DEA PRESS-ONS GIVE YOU SALON RESULTS IN MINUTES, NOT HOURS.",
-        "underline_word": "",
-        "bg_color": "#eaeaee",
-        "button_label": "SHOP YOURS NOW",
-        "button_link": "shopify://collections/frontpage",
-        "padding_top": 0,
-        "padding_bottom": 0
       }
     },
     "banner_1_abc123": {
@@ -283,6 +326,20 @@
         "color_scheme": "scheme-1",
         "padding_top": 0,
         "padding_bottom": 0
+      }
+    },
+    "parallax_images_WbkcRU": {
+      "type": "parallax-images",
+      "disabled": true,
+      "name": "Parallax Images",
+      "settings": {
+        "heading_line1": "Makeup, Made",
+        "heading_line2": "Effortless.",
+        "text": "Lightweight, buildable makeup infused with skincare-level ingredients. Easy to wear, easy to apply, and made for real routines —not overthinking.",
+        "bg_color": "#eaeaee",
+        "accent_color": "#7c6faa",
+        "padding_top": 185,
+        "padding_bottom": 120
       }
     },
     "reviews_marquee_37mzBR": {
@@ -336,6 +393,7 @@
         "review_W4qRGD",
         "image_ndeGEk"
       ],
+      "disabled": true,
       "name": "Reviews Marquee",
       "settings": {
         "heading": "The Hype Is Real",
@@ -348,6 +406,14 @@
     "lookbook_product_BWKjUT": {
       "type": "lookbook-product",
       "blocks": {
+        "product_hxFeji": {
+          "type": "product",
+          "settings": {
+            "product": "summr",
+            "offset_top": 50,
+            "offset_left": 23
+          }
+        },
         "product_k447tq": {
           "type": "product",
           "settings": {
@@ -366,6 +432,7 @@
         }
       },
       "block_order": [
+        "product_hxFeji",
         "product_k447tq",
         "product_nR8AHM"
       ],
@@ -395,16 +462,38 @@
         "reset_spacing": false
       }
     },
+    "scroll_text_reveal_87qCbw": {
+      "type": "scroll-text-reveal",
+      "name": "Scroll Text Reveal",
+      "settings": {
+        "image_rotation": -6,
+        "text": "The scent that actually works not just for minutes, but all day. It blends with your skin, evolves with your body, and lasts where others fade. Built for heat, humidity, and real life. Subtle, effortless, and always there.",
+        "underline_word": "",
+        "bg_color": "#eaeaee",
+        "button_label": "Explore Ingredients",
+        "button_link": "shopify://collections/frontpage",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
     "sticky_image_cards_VnGBgB": {
       "type": "sticky-image-cards",
       "blocks": {
+        "card_Udc7fB": {
+          "type": "card",
+          "settings": {
+            "heading": "Made with\nNaturally Derived\nIngredients",
+            "description": "",
+            "image_position": "left",
+            "button_label": "",
+            "button_link": ""
+          }
+        },
         "card_PMHH4x": {
           "type": "card",
           "settings": {
-            "heading": "PRESS-ONS THAT ACTUALLY LOOK LIKE THE REAL THING",
+            "heading": "Made with Naturally Derived Ingredients",
             "description": "",
-            "image": "shopify://shop_images/Pastell-lila-Gel-Strips-Blumen-in-Jeanshosentasche_600x_44ab1475-571f-4a5d-ba0f-053bc61420a4.webp",
-            "image_2": "shopify://shop_images/Rote-Dipping-Powder-N_gel_600x_1.webp",
             "image_position": "right",
             "button_label": "",
             "button_link": ""
@@ -412,6 +501,7 @@
         }
       },
       "block_order": [
+        "card_Udc7fB",
         "card_PMHH4x"
       ],
       "name": "Sticky Image Cards",
@@ -425,10 +515,9 @@
       "type": "animated-banner",
       "name": "Animated Banner",
       "settings": {
-        "image": "shopify://shop_images/image-banner-1_8c625899-95b9-4a4c-8592-86d042a27db8.webp",
         "overlay_opacity": 10,
         "bg_color": "#e8d8c3",
-        "text": "Salon nails in minutes. No appointment ever.",
+        "text": "One case. Your first scent. The rest follows naturally.",
         "text_color": "#ffffff",
         "text_weight": "500",
         "text_size": 180,
@@ -453,7 +542,7 @@
         "image_ym76Bt": {
           "type": "image",
           "settings": {
-            "button_label": "@GETDEA",
+            "button_label": "@GETSUMMR",
             "button_link": ""
           }
         },
@@ -481,10 +570,28 @@
       "name": "Instagram Gallery",
       "settings": {
         "instagram_link": "",
-        "bottom_button_label": "@GETDEA",
+        "bottom_button_label": "@GETSUMMR",
         "color_scheme": "scheme-1",
         "padding_top": 40,
         "padding_bottom": 60
+      }
+    },
+    "hero_dea_main": {
+      "type": "hero-dea",
+      "settings": {
+        "eyebrow": "Press-On Perfection",
+        "heading_line1": "Salon Nails.",
+        "heading_line2": "Zero Appointment.",
+        "description": "Premium press-on nails that last up to 2 weeks. Apply in minutes, look like you spent hours.",
+        "button_label": "Shop the Collection",
+        "button_link": "shopify:\/\/collections\/all",
+        "bg_color": "#F5F0EB",
+        "accent_color": "#8B6459",
+        "text_color": "#0a0a0a",
+        "button_bg": "#0a0a0a",
+        "button_text_color": "#F5F0EB",
+        "padding_top": 0,
+        "padding_bottom": 0
       }
     }
   },
@@ -492,13 +599,15 @@
     "hero_dea_main",
     "slideshow_8KKtNU",
     "collection_tab_WYU6Ti",
+    "how_it_works_ehWcBh",
     "currently_obsessed_fh7pWK",
+    "testimonials_grid_def456",
     "c_four_KJpT6P",
-    "parallax_images_WbkcRU",
-    "scroll_text_reveal_87qCbw",
     "banner_1_abc123",
+    "parallax_images_WbkcRU",
     "reviews_marquee_37mzBR",
     "lookbook_product_BWKjUT",
+    "scroll_text_reveal_87qCbw",
     "sticky_image_cards_VnGBgB",
     "animated_banner_G77Vdq",
     "instagram_gallery_j7FkEj"

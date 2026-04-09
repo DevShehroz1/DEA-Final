@@ -111,16 +111,16 @@
                 >
                   <span class="btn-label hidden-on-load">
                     {%- if product.selected_or_first_available_variant.inventory_management == null -%}
-                      {{ 'products.product.general.add_to_cart' | t }}
+                      {{ 'products.product.general.add_to_cart' | t }} &middot; {{ product.selected_or_first_available_variant.price | money }}
                     {%- else -%}
                       {%- if product.selected_or_first_available_variant.available == false -%}
                         {{ 'products.product.general.outstock' | t }}
                       {%- else -%}
                         {%- if product.selected_or_first_available_variant.inventory_quantity < 1 -%}
-                          {{ 'products.product.general.pre_order' | t }}
+                          {{ 'products.product.general.pre_order' | t }} &middot; {{ product.selected_or_first_available_variant.price | money }}
 
                         {%- else -%}
-                          {{ 'products.product.general.add_to_cart' | t }}
+                          {{ 'products.product.general.add_to_cart' | t }} &middot; {{ product.selected_or_first_available_variant.price | money }}
                         {%- endif -%}
                       {%- endif -%}
                     {%- endif -%}

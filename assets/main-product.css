@@ -1,3 +1,129 @@
+/* ============================================
+   PRODUCT PAGE - Phenomena-style overrides
+   Pill buttons, gray accordion tabs, clean layout
+   ============================================ */
+
+/* --- Add to Cart: pill shape, full width --- */
+.product-detail__information .product-form__submit,
+.product-detail__information .button_buy-now .btn-primary {
+  border-radius: 999px;
+  padding: 1.6rem 3rem;
+  font-size: 14px;
+  letter-spacing: 1.5px;
+  font-weight: 500;
+}
+
+/* --- Buy It Now / Dynamic Checkout: pill outline --- */
+.product-detail__information .btn-checkout-dynamic .shopify-payment-button__button {
+  border-radius: 999px !important;
+  border: 1.5px solid var(--color-heading, #111) !important;
+  background: transparent !important;
+  color: var(--color-heading, #111) !important;
+  font-size: 14px !important;
+  letter-spacing: 1.5px !important;
+  font-weight: 500 !important;
+  padding: 1.6rem 3rem !important;
+}
+
+.product-detail__information .btn-checkout-dynamic .shopify-payment-button__button [role="button"] {
+  padding: 0 !important;
+}
+
+.product-detail__information .btn-checkout-dynamic .shopify-payment-button__button:hover {
+  background: var(--color-heading, #111) !important;
+  color: var(--color-white, #fff) !important;
+}
+
+/* --- Hide wishlist/compare buttons on product page --- */
+.product-detail__information button-wishlist,
+.product-detail__information button-compare {
+  display: none;
+}
+
+/* --- Quantity selector: hide +/- buttons, show as dropdown-style --- */
+.product-detail__information .product-form__quantity {
+  margin-bottom: 0.5rem;
+}
+
+.product-detail__information .quantity {
+  border-radius: 999px;
+  border: 1.5px solid var(--color-heading, #111);
+  background: transparent;
+}
+
+/* --- Collapsible/Accordion: gray bg, rounded, no border-bottom --- */
+.product-detail__information collapsible-block.bls-toggle {
+  border-bottom: none;
+  margin-bottom: 8px;
+}
+
+.product-detail__information collapsible-block:first-of-type h3 {
+  border-top: none;
+}
+
+.product-detail__information collapsible-block .collapsible-heading {
+  background-color: #f5f5f5;
+  border-radius: 12px;
+  padding: 16px 20px;
+  margin: 0;
+  font-weight: var(--heading-weight, 700);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border: none;
+}
+
+.product-detail__information collapsible-block .collapsible-heading:hover {
+  background-color: #eeeeee;
+}
+
+.product-detail__information collapsible-block .collapsible-content {
+  padding: 0 20px;
+}
+
+.product-detail__information collapsible-block .collapsible-content_inner {
+  padding-top: 12px;
+  padding-bottom: 8px;
+}
+
+/* --- Open state: keep gray bg --- */
+.product-detail__information collapsible-block.open .collapsible-heading {
+  background-color: #f0f0f0;
+  border-radius: 12px 12px 0 0;
+}
+
+.product-detail__information collapsible-block.open .collapsible-content {
+  background-color: #f5f5f5;
+  border-radius: 0 0 12px 12px;
+}
+
+/* --- Plus icon in accordion --- */
+.product-detail__information .open-children-toggle {
+  right: 16px;
+}
+
+/* --- Stock countdown: yellow dot style --- */
+.product-detail__information .stock-countdown-message {
+  font-size: var(--body-font-size, 15px);
+}
+
+/* --- Trust text block styling --- */
+.product-detail__information .text-block-content p {
+  font-size: var(--body-font-size, 15px);
+  color: var(--color-heading);
+}
+
+/* --- Complementary products (Buy It With) --- */
+.product-detail__information product-recommendations {
+  border: 1.5px solid var(--color-heading, #111);
+  border-radius: 16px;
+  padding: 20px;
+  margin-top: 16px;
+}
+
+/* ============================================
+   END Phenomena-style overrides
+   ============================================ */
+
 .product-next-prev {
   --product-item__price-top: 0.8rem;
 }
