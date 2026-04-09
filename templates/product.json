@@ -97,7 +97,7 @@
         "enable_sticky_content_on_desktop": true,
         "enable_skeleton_loading": true,
         "desktop_media_width": 50,
-        "desktop_layout": "thumbnail_left",
+        "desktop_layout": "grid_1_column",
         "image_zoom": "open_lightbox",
         "enable_video_looping": true,
         "enable_video_autoplay": true,
@@ -105,7 +105,7 @@
         "enable_frequently_bought_together": true,
         "enable_on_desktop": true,
         "enable_on_mobile": true,
-        "mobile_options": "hidden_thumbnail"
+        "mobile_options": "show_thumbnails"
       }
     },
     "product-set": {
