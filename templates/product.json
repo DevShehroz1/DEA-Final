@@ -93,7 +93,7 @@
         "complementary_products_Wip9YG"
       ],
       "settings": {
-        "section_width": "container",
+        "section_width": "fluid_container",
         "enable_sticky_content_on_desktop": true,
         "enable_skeleton_loading": true,
         "desktop_media_width": 50,
