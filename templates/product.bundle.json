@@ -25,11 +25,11 @@
           "type": "title",
           "settings": {}
         },
-        "text_intro": {
+        "text_trust": {
           "type": "text",
           "settings": {
             "heading": "",
-            "content": "<p>Pick your designs and save more with every set you add. The more you build, the bigger the discount.</p>"
+            "content": "<p>\u2b50 Salon-Grade Quality \u00a0\u00a0\u00a0 \u2b50 Gentle On Natural Nails</p>"
           }
         },
         "bundle_main": {
@@ -48,14 +48,14 @@
             "tier2_discount": 21,
             "tier3_count": 6,
             "tier3_discount": 30,
-            "tier4_count": 8,
+            "tier4_count": 7,
             "tier4_discount": 38
           }
         }
       },
       "block_order": [
         "title_main",
-        "text_intro",
+        "text_trust",
         "bundle_main"
       ],
       "settings": {

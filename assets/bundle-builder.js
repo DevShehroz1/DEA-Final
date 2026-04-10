@@ -19,42 +19,40 @@ class BundleBuilder extends HTMLElement {
     this.summaryInfo = this.querySelector('.bb-summary__info');
     this.trackFill = this.querySelector('.bb-tiers__track-fill');
 
-    if (this.tiers.length > 0) {
-      this.designs = new Array(this.tiers[this.tiers.length - 1].count).fill(null);
-    }
+    // Max slots = highest tier count
+    this.maxSlots = this.tiers.length > 0 ? this.tiers[this.tiers.length - 1].count : 7;
+    this.designs = new Array(this.maxSlots).fill(null);
 
-    this.bindTiers();
     this.bindPopup();
     this.bindFilters();
     this.bindEscape();
-    this.selectTier(0);
-    this.updateSummary();
-  }
-
-  /* --- Tier Logic --- */
-  bindTiers() {
-    this.querySelectorAll('.bb-tier').forEach(function(el) {
-      el.addEventListener('click', function() {
-        this.selectTier(parseInt(el.dataset.index));
-      }.bind(this));
-    }.bind(this));
-  }
-
-  selectTier(index) {
-    this.selectedTierIndex = index;
-    this.querySelectorAll('.bb-tier').forEach(function(el, i) {
-      el.classList.toggle('active', i <= index);
-    });
-    var pct = index === 0 ? 0 : (index / (this.tiers.length - 1)) * 100;
-    if (this.trackFill) this.trackFill.style.width = pct + '%';
     this.renderSlots();
+    this.updateTierProgress();
     this.updateSummary();
   }
 
-  /* --- Slot Rendering --- */
+  /* --- Tier Progress (auto, based on filled count) --- */
+  updateTierProgress() {
+    var filled = this.designs.filter(function(d) { return d !== null; }).length;
+    // Find highest tier index whose count is met
+    var activeTierIndex = -1;
+    for (var i = 0; i < this.tiers.length; i++) {
+      if (filled >= this.tiers[i].count) {
+        activeTierIndex = i;
+      }
+    }
+    this.querySelectorAll('.bb-tier').forEach(function(el, i) {
+      el.classList.toggle('active', i <= activeTierIndex);
+    });
+    // Progress bar fill: based on filled count vs max
+    var pct = (filled / this.maxSlots) * 100;
+    if (pct > 100) pct = 100;
+    if (this.trackFill) this.trackFill.style.width = pct + '%';
+  }
+
+  /* --- Slot Rendering: always render max slots --- */
   renderSlots() {
-    var tier = this.tiers[this.selectedTierIndex];
-    var count = tier.count;
+    var count = this.maxSlots;
     var html = '';
     for (var i = 0; i < count; i++) {
       var design = this.designs[i];
@@ -100,6 +98,7 @@ class BundleBuilder extends HTMLElement {
         var idx = parseInt(el.dataset.index);
         self.designs[idx] = null;
         self.renderSlots();
+        self.updateTierProgress();
         self.updateSummary();
       });
     });
@@ -208,9 +207,15 @@ class BundleBuilder extends HTMLElement {
     };
     if (this.currentSlotIndex !== null) {
       this.designs[this.currentSlotIndex] = design;
+    } else {
+      // No specific slot - find first empty
+      for (var i = 0; i < this.designs.length; i++) {
+        if (this.designs[i] === null) { this.designs[i] = design; break; }
+      }
     }
     this.closePopup();
     this.renderSlots();
+    this.updateTierProgress();
     this.updateSummary();
   }
 
@@ -286,16 +291,30 @@ class BundleBuilder extends HTMLElement {
   /* --- Summary / Discount --- */
   updateSummary() {
     var filled = this.designs.filter(function(d) { return d !== null; }).length;
-    var tier = this.tiers[this.selectedTierIndex];
-    var needed = tier.count;
-    var discount = tier.discount;
+
+    // Determine the highest reached tier
+    var currentDiscount = 0;
+    var nextTier = null;
+    for (var i = 0; i < this.tiers.length; i++) {
+      if (filled >= this.tiers[i].count) {
+        currentDiscount = this.tiers[i].discount;
+      } else if (nextTier === null) {
+        nextTier = this.tiers[i];
+      }
+    }
 
     if (this.summaryInfo) {
-      if (filled >= needed) {
-        this.summaryInfo.innerHTML = '<span>' + discount + '% OFF</span> applied to ' + filled + ' designs';
-      } else {
-        var remaining = needed - filled;
-        this.summaryInfo.innerHTML = 'Select ' + remaining + ' more design' + (remaining > 1 ? 's' : '') + ' for <span>' + discount + '% off</span>';
+      if (currentDiscount > 0 && nextTier) {
+        // Has a discount but can level up
+        var remaining = nextTier.count - filled;
+        this.summaryInfo.innerHTML = '<span>' + currentDiscount + '% OFF</span> applied. Add ' + remaining + ' more for <span>' + nextTier.discount + '% off</span>';
+      } else if (currentDiscount > 0) {
+        // Max tier reached
+        this.summaryInfo.innerHTML = '<span>' + currentDiscount + '% OFF</span> applied to ' + filled + ' designs';
+      } else if (nextTier) {
+        // No discount yet
+        var needed = nextTier.count - filled;
+        this.summaryInfo.innerHTML = 'Add ' + needed + ' more design' + (needed > 1 ? 's' : '') + ' for <span>' + nextTier.discount + '% off</span>';
       }
     }
 

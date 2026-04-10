@@ -240,15 +240,15 @@
 }
 
 /* ============================================
-   POPUP (Desktop) / DRAWER (Mobile)
+   RIGHT-SIDE DRAWER (all screens)
    ============================================ */
 .bb-popup {
   position: fixed;
   inset: 0;
   z-index: 9999;
   display: none;
-  align-items: center;
-  justify-content: center;
+  align-items: stretch;
+  justify-content: flex-end;
 }
 .bb-popup.open {
   display: flex;
@@ -263,23 +263,23 @@
   position: relative;
   z-index: 1;
   background: #fff;
-  width: 90vw;
-  max-width: 800px;
-  max-height: 88vh;
-  border-radius: 16px;
+  width: 100%;
+  max-width: 560px;
+  max-height: 100vh;
+  height: 100vh;
+  border-radius: 0;
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  animation: bbPopIn 0.3s ease;
+  animation: bbSlideIn 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  box-shadow: -10px 0 40px rgba(0, 0, 0, 0.15);
 }
-@keyframes bbPopIn {
+@keyframes bbSlideIn {
   from {
-    opacity: 0;
-    transform: scale(0.96) translateY(10px);
+    transform: translateX(100%);
   }
   to {
-    opacity: 1;
-    transform: scale(1) translateY(0);
+    transform: translateX(0);
   }
 }
 
@@ -600,7 +600,7 @@
 }
 
 /* ============================================
-   MOBILE DRAWER (< 768px)
+   RESPONSIVE
    ============================================ */
 @media (max-width: 767px) {
   .bb {
@@ -623,26 +623,8 @@
   .bb__heading {
     font-size: 22px;
   }
-
-  .bb-popup {
-    align-items: stretch;
-    justify-content: flex-end;
-  }
   .bb-popup__panel {
-    width: 100%;
     max-width: 100%;
-    max-height: 100vh;
-    height: 100vh;
-    border-radius: 0;
-    animation: bbSlideIn 0.3s ease;
-  }
-  @keyframes bbSlideIn {
-    from {
-      transform: translateX(100%);
-    }
-    to {
-      transform: translateX(0);
-    }
   }
   .bb-popup__header {
     padding: 18px 20px;
@@ -664,6 +646,11 @@
   .bb-product-card__name {
     font-size: 14px;
   }
+}
+
+/* Drawer always shows 2-column grid since width is constrained */
+.bb-popup__grid {
+  grid-template-columns: repeat(2, 1fr);
 }
 
 @media (max-width: 480px) {
