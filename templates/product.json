@@ -126,26 +126,6 @@
         "mobile_options": "hidden_thumbnail"
       }
     },
-    "bundle_builder": {
-      "type": "bundle-builder",
-      "settings": {
-        "collection": "all",
-        "heading": "Choose your designs:",
-        "popup_heading": "Choose Your Designs",
-        "banner_text": "Find your length and your style",
-        "footer_text": "Free trial with the money-back guarantee",
-        "show_filters": true,
-        "filter_tags": "Almond,Round,Square,Coffin",
-        "tier1_count": 3,
-        "tier1_discount": 15,
-        "tier2_count": 4,
-        "tier2_discount": 21,
-        "tier3_count": 6,
-        "tier3_discount": 30,
-        "tier4_count": 8,
-        "tier4_discount": 38
-      }
-    },
     "divider_TKLM6L": {
       "type": "divider",
       "settings": {
@@ -177,7 +157,6 @@
   "order": [
     "breadcrumb",
     "main",
-    "bundle_builder",
     "divider_TKLM6L",
     "related_products"
   ]
