@@ -1,0 +1,184 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "breadcrumb": {
+      "type": "breadcrumb",
+      "disabled": true,
+      "settings": {
+        "section_width": "container",
+        "color_scheme": "",
+        "next_prev": false
+      }
+    },
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "title_G6tU8U": {
+          "type": "title",
+          "settings": {}
+        },
+        "price_VJ4N8m": {
+          "type": "price",
+          "settings": {}
+        },
+        "text_trust": {
+          "type": "text",
+          "settings": {
+            "heading": "",
+            "content": "<p>⭐ Salon-Grade Quality     ⭐ Gentle On Natural Nails</p>"
+          }
+        },
+        "variant_picker_tcCihG": {
+          "type": "variant_picker",
+          "settings": {
+            "variant_type": "swatches",
+            "show_size_guide": false,
+            "size_guide_label": "Size guide",
+            "size_guide_page": "size-guide"
+          }
+        },
+        "buy_buttons_LcQGtR": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": true,
+            "show_gift_card_recipient": true,
+            "show_wishlist": false,
+            "show_compare": false
+          }
+        },
+        "collapsible_desc": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Description",
+            "content": "",
+            "use_product_description": true
+          }
+        },
+        "collapsible_howto": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "How to Apply",
+            "content": "<ol><li>Prep your natural nails — push back cuticles, lightly buff, and wipe clean.</li><li>Select the right size for each nail from the set.</li><li>Apply a thin layer of DEA Nail Glue to your natural nail.</li><li>Press the DEA press-on firmly from cuticle to tip. Hold for 10 seconds.</li><li>Repeat for all 10 nails. You’re done in under 10 minutes.</li></ol>",
+            "use_product_description": false
+          }
+        },
+        "collapsible_whats": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "What's Included",
+            "content": "<ul><li>24 premium press-on nails (12 sizes)</li><li>Mini nail file</li><li>Prep pad</li><li>Application instructions</li></ul><p><em>Nail glue and Oil Remover sold separately.</em></p>",
+            "use_product_description": false
+          }
+        },
+        "collapsible_shipping": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Shipping + Returns",
+            "content": "<p><strong>Shipping:</strong> Orders ship within 1–2 business days. Standard delivery takes 3–5 business days. Free shipping on orders over $75.</p><p><strong>Returns:</strong> We accept returns within 14 days of delivery for unopened, unused products in original packaging. Contact us at hello@dea.com to start a return.</p>",
+            "use_product_description": false
+          }
+        },
+        "complementary_products_Wip9YG": {
+          "type": "complementary_products",
+          "settings": {
+            "heading": "Buy It With",
+            "product_list_limit": 10,
+            "products_per_page": 1,
+            "show_navigation": false,
+            "show_pagination": false,
+            "enable_quick_add": true
+          }
+        }
+      },
+      "block_order": [
+        "title_G6tU8U",
+        "price_VJ4N8m",
+        "text_trust",
+        "variant_picker_tcCihG",
+        "buy_buttons_LcQGtR",
+        "collapsible_desc",
+        "collapsible_howto",
+        "collapsible_whats",
+        "collapsible_shipping",
+        "complementary_products_Wip9YG"
+      ],
+      "settings": {
+        "section_width": "container",
+        "enable_sticky_content_on_desktop": true,
+        "enable_skeleton_loading": true,
+        "desktop_media_width": 50,
+        "desktop_layout": "thumbnail_bottom",
+        "image_zoom": "open_lightbox",
+        "enable_video_looping": true,
+        "enable_video_autoplay": true,
+        "user_variants_image_group": true,
+        "enable_frequently_bought_together": false,
+        "enable_on_desktop": true,
+        "enable_on_mobile": true,
+        "mobile_options": "hidden_thumbnail"
+      }
+    },
+    "bundle_builder": {
+      "type": "bundle-builder",
+      "settings": {
+        "collection": "all",
+        "heading": "Choose your designs:",
+        "popup_heading": "Choose Your Designs",
+        "banner_text": "Find your length and your style",
+        "footer_text": "Free trial with the money-back guarantee",
+        "show_filters": true,
+        "filter_tags": "Almond,Round,Square,Coffin",
+        "tier1_count": 3,
+        "tier1_discount": 15,
+        "tier2_count": 4,
+        "tier2_discount": 21,
+        "tier3_count": 6,
+        "tier3_discount": 30,
+        "tier4_count": 8,
+        "tier4_discount": 38
+      }
+    },
+    "divider_TKLM6L": {
+      "type": "divider",
+      "settings": {
+        "section_width": "container",
+        "border_height": 1,
+        "border_color": "#ebebeb",
+        "reset_spacing": false
+      }
+    },
+    "related_products": {
+      "type": "related-products",
+      "settings": {
+        "section_width": "container",
+        "color_scheme": "",
+        "heading": "You May Also Like",
+        "description": "",
+        "header_size": "medium",
+        "header_alignment": "center",
+        "items_to_show": 4,
+        "items_per_row": 4,
+        "column_gap": 30,
+        "items_per_row_mobile": 2,
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "reset_spacing": false
+      }
+    }
+  },
+  "order": [
+    "breadcrumb",
+    "main",
+    "bundle_builder",
+    "divider_TKLM6L",
+    "related_products"
+  ]
+}
