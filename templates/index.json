@@ -9,6 +9,24 @@
  */
 {
   "sections": {
+    "hero_dea_main": {
+      "type": "hero-dea",
+      "settings": {
+        "eyebrow": "Press-On Perfection",
+        "heading_line1": "Salon Nails.",
+        "heading_line2": "Zero Appointment.",
+        "description": "Premium press-on nails that last up to 2 weeks. Apply in minutes, look like you spent hours.",
+        "button_label": "Shop the Collection",
+        "button_link": "shopify://collections/all",
+        "bg_color": "#f5f0eb",
+        "accent_color": "#8b6459",
+        "text_color": "#0a0a0a",
+        "button_bg": "#0a0a0a",
+        "button_text_color": "#f5f0eb",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
     "slideshow_8KKtNU": {
       "type": "slideshow",
       "blocks": {
@@ -155,6 +173,7 @@
         "step_HWpCW7",
         "step_zrTdDf"
       ],
+      "disabled": true,
       "name": "How It Works",
       "settings": {
         "heading": "How Summr Works",
@@ -310,6 +329,7 @@
     },
     "banner_1_abc123": {
       "type": "banner-1",
+      "disabled": true,
       "settings": {
         "overlay_opacity": 20,
         "heading": "THE SUMMR ROUTINE",
@@ -464,6 +484,7 @@
     },
     "scroll_text_reveal_87qCbw": {
       "type": "scroll-text-reveal",
+      "disabled": true,
       "name": "Scroll Text Reveal",
       "settings": {
         "image_rotation": -6,
@@ -504,6 +525,7 @@
         "card_Udc7fB",
         "card_PMHH4x"
       ],
+      "disabled": true,
       "name": "Sticky Image Cards",
       "settings": {
         "bg_color": "#eaeaee",
@@ -513,6 +535,7 @@
     },
     "animated_banner_G77Vdq": {
       "type": "animated-banner",
+      "disabled": true,
       "name": "Animated Banner",
       "settings": {
         "overlay_opacity": 10,
@@ -567,6 +590,7 @@
         "image_qFLCFE",
         "image_p6fJBP"
       ],
+      "disabled": true,
       "name": "Instagram Gallery",
       "settings": {
         "instagram_link": "",
@@ -574,24 +598,6 @@
         "color_scheme": "scheme-1",
         "padding_top": 40,
         "padding_bottom": 60
-      }
-    },
-    "hero_dea_main": {
-      "type": "hero-dea",
-      "settings": {
-        "eyebrow": "Press-On Perfection",
-        "heading_line1": "Salon Nails.",
-        "heading_line2": "Zero Appointment.",
-        "description": "Premium press-on nails that last up to 2 weeks. Apply in minutes, look like you spent hours.",
-        "button_label": "Shop the Collection",
-        "button_link": "shopify:\/\/collections\/all",
-        "bg_color": "#F5F0EB",
-        "accent_color": "#8B6459",
-        "text_color": "#0a0a0a",
-        "button_bg": "#0a0a0a",
-        "button_text_color": "#F5F0EB",
-        "padding_top": 0,
-        "padding_bottom": 0
       }
     }
   },
