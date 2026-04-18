@@ -56,7 +56,6 @@
       "settings": {
         "section_width": "fluid_container",
         "color_scheme": "scheme-1",
-        "footer_logo": "shopify://shop_images/summr_6_blue_63c39aad-075e-46c4-b0e8-eab662ca777d.png",
         "footer_logo_url": "",
         "enable_back_top": false,
         "separator_line": "none",
@@ -67,7 +66,7 @@
         "payment_enable": false,
         "payment_width": 340,
         "copyright_text": "",
-        "credit_text": "DESIGNED & DEVELOPED BY TIC GLOBAL SERVICES",
+        "credit_text": "",
         "social_instagram": "",
         "social_email": "",
         "footer_heading_size": 16,
